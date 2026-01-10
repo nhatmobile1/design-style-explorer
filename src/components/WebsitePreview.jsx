@@ -85,20 +85,6 @@ function WebsitePreview({ selectedStyle }) {
               </button>
               <button className="web-btn web-btn-secondary web-btn-lg">Watch demo</button>
             </div>
-            <div className="web-hero-stats">
-              <div className="web-stat">
-                <span className="web-stat-value">50K+</span>
-                <span className="web-stat-label">Active learners</span>
-              </div>
-              <div className="web-stat">
-                <span className="web-stat-value">4.9</span>
-                <span className="web-stat-label">App rating</span>
-              </div>
-              <div className="web-stat">
-                <span className="web-stat-value">2M+</span>
-                <span className="web-stat-label">Lessons completed</span>
-              </div>
-            </div>
           </div>
           <div className="web-hero-visual">
             <div className="web-hero-card">
@@ -106,6 +92,88 @@ function WebsitePreview({ selectedStyle }) {
               <div className="web-card-jp">お疲れ様です</div>
               <div className="web-card-romaji">Otsukaresama desu</div>
               <div className="web-card-en">"Thank you for your hard work"</div>
+            </div>
+          </div>
+        </section>
+
+        {/* Logo Cloud / Partners - Clean Marquee */}
+        <section className="web-logos">
+          <p className="web-logos-label">Trusted by teams at</p>
+          <div className="web-logos-marquee">
+            <div className="web-logos-track">
+              <span className="web-logo-text">Google</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Stripe</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Notion</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Figma</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Linear</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Vercel</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">OpenAI</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Anthropic</span>
+              <span className="web-logo-divider">·</span>
+              {/* Duplicate for seamless loop */}
+              <span className="web-logo-text">Google</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Stripe</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Notion</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Figma</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Linear</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Vercel</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">OpenAI</span>
+              <span className="web-logo-divider">·</span>
+              <span className="web-logo-text">Anthropic</span>
+              <span className="web-logo-divider">·</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="web-stats-section">
+          <div className="web-stats-grid">
+            <div className="web-stats-card">
+              <div className="web-stats-number">50K+</div>
+              <div className="web-stats-label">Active Learners</div>
+              <div className="web-stats-trend web-stats-trend-up">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                  <path d="M17 6h6v6" />
+                </svg>
+                +12% this month
+              </div>
+            </div>
+            <div className="web-stats-card">
+              <div className="web-stats-number">2.5M</div>
+              <div className="web-stats-label">Lessons Completed</div>
+              <div className="web-stats-trend web-stats-trend-up">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                  <path d="M17 6h6v6" />
+                </svg>
+                +28% this month
+              </div>
+            </div>
+            <div className="web-stats-card">
+              <div className="web-stats-number">98%</div>
+              <div className="web-stats-label">Satisfaction Rate</div>
+              <div className="web-stats-bar">
+                <div className="web-stats-bar-fill" style={{ width: '98%' }} />
+              </div>
+            </div>
+            <div className="web-stats-card">
+              <div className="web-stats-number">4.9</div>
+              <div className="web-stats-label">App Store Rating</div>
+              <div className="web-stats-stars">★★★★★</div>
             </div>
           </div>
         </section>
@@ -183,6 +251,236 @@ function WebsitePreview({ selectedStyle }) {
           </div>
         </section>
 
+        {/* Pricing Section */}
+        <section className="web-pricing">
+          <h2 className="web-section-title">Simple, transparent pricing</h2>
+          <p className="web-section-subtitle">Start free, upgrade when you're ready</p>
+
+          <div className="web-pricing-toggle">
+            <span className="web-pricing-toggle-label active">Monthly</span>
+            <div className="web-toggle">
+              <div className="web-toggle-track">
+                <div className="web-toggle-thumb" />
+              </div>
+            </div>
+            <span className="web-pricing-toggle-label">Yearly <span className="web-pricing-save">Save 20%</span></span>
+          </div>
+
+          <div className="web-pricing-grid">
+            <div className="web-pricing-card">
+              <div className="web-pricing-header">
+                <h3>Free</h3>
+                <p>For casual learners</p>
+              </div>
+              <div className="web-pricing-price">
+                <span className="web-pricing-amount">$0</span>
+                <span className="web-pricing-period">/month</span>
+              </div>
+              <ul className="web-pricing-features">
+                <li><span className="web-check">✓</span> 10 lessons per day</li>
+                <li><span className="web-check">✓</span> Basic vocabulary</li>
+                <li><span className="web-check">✓</span> Progress tracking</li>
+                <li className="web-pricing-disabled"><span className="web-x">✕</span> Offline mode</li>
+                <li className="web-pricing-disabled"><span className="web-x">✕</span> Advanced grammar</li>
+              </ul>
+              <button className="web-btn web-btn-secondary web-btn-full">Get started</button>
+            </div>
+
+            <div className="web-pricing-card web-pricing-featured">
+              <div className="web-pricing-badge">Most Popular</div>
+              <div className="web-pricing-header">
+                <h3>Pro</h3>
+                <p>For serious learners</p>
+              </div>
+              <div className="web-pricing-price">
+                <span className="web-pricing-amount">$12</span>
+                <span className="web-pricing-period">/month</span>
+              </div>
+              <ul className="web-pricing-features">
+                <li><span className="web-check">✓</span> Unlimited lessons</li>
+                <li><span className="web-check">✓</span> Full vocabulary</li>
+                <li><span className="web-check">✓</span> Advanced grammar</li>
+                <li><span className="web-check">✓</span> Offline mode</li>
+                <li><span className="web-check">✓</span> JLPT prep courses</li>
+              </ul>
+              <button className="web-btn web-btn-primary web-btn-full">Start free trial</button>
+            </div>
+
+            <div className="web-pricing-card">
+              <div className="web-pricing-header">
+                <h3>Team</h3>
+                <p>For companies & schools</p>
+              </div>
+              <div className="web-pricing-price">
+                <span className="web-pricing-amount">$49</span>
+                <span className="web-pricing-period">/month</span>
+              </div>
+              <ul className="web-pricing-features">
+                <li><span className="web-check">✓</span> Everything in Pro</li>
+                <li><span className="web-check">✓</span> Team management</li>
+                <li><span className="web-check">✓</span> Progress reports</li>
+                <li><span className="web-check">✓</span> Custom content</li>
+                <li><span className="web-check">✓</span> Priority support</li>
+              </ul>
+              <button className="web-btn web-btn-secondary web-btn-full">Contact sales</button>
+            </div>
+          </div>
+        </section>
+
+        {/* Form Elements Section */}
+        <section className="web-form-section">
+          <h2 className="web-section-title">Contact Us</h2>
+          <p className="web-section-subtitle">Have questions? We'd love to hear from you.</p>
+
+          <div className="web-form-container">
+            <form className="web-form">
+              <div className="web-form-row">
+                <div className="web-form-group">
+                  <label className="web-label">First Name</label>
+                  <input type="text" className="web-input" placeholder="John" />
+                </div>
+                <div className="web-form-group">
+                  <label className="web-label">Last Name</label>
+                  <input type="text" className="web-input" placeholder="Doe" />
+                </div>
+              </div>
+
+              <div className="web-form-group">
+                <label className="web-label">Email</label>
+                <input type="email" className="web-input" placeholder="john@example.com" />
+                <span className="web-input-hint">We'll never share your email.</span>
+              </div>
+
+              <div className="web-form-group">
+                <label className="web-label">Subject</label>
+                <select className="web-select">
+                  <option>Select a topic...</option>
+                  <option>General Inquiry</option>
+                  <option>Technical Support</option>
+                  <option>Billing Question</option>
+                  <option>Partnership</option>
+                </select>
+              </div>
+
+              <div className="web-form-group">
+                <label className="web-label">Message</label>
+                <textarea className="web-textarea" rows="4" placeholder="How can we help you?"></textarea>
+              </div>
+
+              <div className="web-form-group">
+                <label className="web-label">Experience Level</label>
+                <div className="web-radio-group">
+                  <label className="web-radio">
+                    <input type="radio" name="level" defaultChecked />
+                    <span className="web-radio-mark"></span>
+                    Beginner
+                  </label>
+                  <label className="web-radio">
+                    <input type="radio" name="level" />
+                    <span className="web-radio-mark"></span>
+                    Intermediate
+                  </label>
+                  <label className="web-radio">
+                    <input type="radio" name="level" />
+                    <span className="web-radio-mark"></span>
+                    Advanced
+                  </label>
+                </div>
+              </div>
+
+              <div className="web-form-group">
+                <label className="web-checkbox">
+                  <input type="checkbox" defaultChecked />
+                  <span className="web-checkbox-mark"></span>
+                  Subscribe to our newsletter
+                </label>
+              </div>
+
+              <div className="web-form-actions">
+                <button type="button" className="web-btn web-btn-secondary">Cancel</button>
+                <button type="submit" className="web-btn web-btn-primary">Send Message</button>
+              </div>
+            </form>
+
+            {/* Alerts */}
+            <div className="web-alerts">
+              <div className="web-alert web-alert-success">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                <div>
+                  <strong>Success!</strong> Your message has been sent.
+                </div>
+              </div>
+              <div className="web-alert web-alert-warning">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+                <div>
+                  <strong>Warning:</strong> Please complete all required fields.
+                </div>
+              </div>
+              <div className="web-alert web-alert-error">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="15" y1="9" x2="9" y2="15" />
+                  <line x1="9" y1="9" x2="15" y2="15" />
+                </svg>
+                <div>
+                  <strong>Error:</strong> Something went wrong. Please try again.
+                </div>
+              </div>
+              <div className="web-alert web-alert-info">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="16" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12.01" y2="8" />
+                </svg>
+                <div>
+                  <strong>Tip:</strong> Complete your profile for personalized lessons.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Progress/Loading Section */}
+        <section className="web-progress-section">
+          <h2 className="web-section-title">Your Progress</h2>
+          <div className="web-progress-cards">
+            <div className="web-progress-card">
+              <div className="web-progress-header">
+                <span>Vocabulary</span>
+                <span className="web-progress-value">72%</span>
+              </div>
+              <div className="web-progress-bar">
+                <div className="web-progress-fill" style={{ width: '72%' }} />
+              </div>
+            </div>
+            <div className="web-progress-card">
+              <div className="web-progress-header">
+                <span>Grammar</span>
+                <span className="web-progress-value">45%</span>
+              </div>
+              <div className="web-progress-bar">
+                <div className="web-progress-fill" style={{ width: '45%' }} />
+              </div>
+            </div>
+            <div className="web-progress-card">
+              <div className="web-progress-header">
+                <span>Kanji</span>
+                <span className="web-progress-value">28%</span>
+              </div>
+              <div className="web-progress-bar">
+                <div className="web-progress-fill" style={{ width: '28%' }} />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="web-cta">
           <div className="web-cta-content">
@@ -193,6 +491,98 @@ function WebsitePreview({ selectedStyle }) {
               <button className="web-btn web-btn-primary">Get started</button>
             </div>
             <span className="web-cta-note">Free 14-day trial. No credit card required.</span>
+          </div>
+        </section>
+
+        {/* Team Section */}
+        <section className="web-team">
+          <h2 className="web-section-title">Meet the team</h2>
+          <p className="web-section-subtitle">Language experts and engineers building the future of learning</p>
+          <div className="web-team-grid">
+            <div className="web-team-member">
+              <div className="web-team-avatar">
+                <span>田</span>
+              </div>
+              <h4>Tanaka Yuki</h4>
+              <p className="web-team-role">Founder & CEO</p>
+              <p className="web-team-bio">Former linguist at Tokyo University. 15+ years teaching Japanese.</p>
+            </div>
+            <div className="web-team-member">
+              <div className="web-team-avatar">
+                <span>M</span>
+              </div>
+              <h4>Maria Santos</h4>
+              <p className="web-team-role">Head of Product</p>
+              <p className="web-team-bio">Ex-Duolingo. Passionate about making learning accessible to all.</p>
+            </div>
+            <div className="web-team-member">
+              <div className="web-team-avatar">
+                <span>J</span>
+              </div>
+              <h4>James Chen</h4>
+              <p className="web-team-role">Lead Engineer</p>
+              <p className="web-team-bio">Built AI systems at Google. JLPT N1 certified learner.</p>
+            </div>
+            <div className="web-team-member">
+              <div className="web-team-avatar">
+                <span>A</span>
+              </div>
+              <h4>Aiko Nakamura</h4>
+              <p className="web-team-role">Content Director</p>
+              <p className="web-team-bio">Native speaker. Creates authentic, culturally-rich lessons.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="web-faq">
+          <h2 className="web-section-title">Frequently asked questions</h2>
+          <p className="web-section-subtitle">Everything you need to know to get started</p>
+          <div className="web-faq-list">
+            <details className="web-faq-item" open>
+              <summary className="web-faq-question">
+                <span>How long does it take to become fluent?</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </summary>
+              <div className="web-faq-answer">
+                <p>With consistent practice of 15-30 minutes daily, most learners reach conversational fluency in 12-18 months. Our AI adapts to your pace, helping you progress faster by focusing on areas that need the most attention.</p>
+              </div>
+            </details>
+            <details className="web-faq-item">
+              <summary className="web-faq-question">
+                <span>Can I learn Japanese without knowing hiragana?</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </summary>
+              <div className="web-faq-answer">
+                <p>Absolutely! We start complete beginners with romaji and gradually introduce hiragana through our proven character recognition system. Most users master hiragana within the first 2-3 weeks.</p>
+              </div>
+            </details>
+            <details className="web-faq-item">
+              <summary className="web-faq-question">
+                <span>Is there a mobile app available?</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </summary>
+              <div className="web-faq-answer">
+                <p>Yes! NihongoLab is available on iOS, Android, and web. Your progress syncs automatically across all devices, so you can learn anywhere.</p>
+              </div>
+            </details>
+            <details className="web-faq-item">
+              <summary className="web-faq-question">
+                <span>What makes NihongoLab different from other apps?</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </summary>
+              <div className="web-faq-answer">
+                <p>Our AI-powered adaptive learning system creates a personalized curriculum just for you. Unlike one-size-fits-all approaches, we analyze your strengths and weaknesses in real-time to optimize your learning path.</p>
+              </div>
+            </details>
           </div>
         </section>
 
@@ -454,15 +844,6 @@ function WebsiteDecorations({ styleId }) {
           <div className="web-editorial-line web-editorial-line-1" />
           <div className="web-editorial-line web-editorial-line-2" />
           <div className="web-editorial-dropcap">N</div>
-        </div>
-      );
-
-    case 'grunge':
-      return (
-        <div className="web-deco-grunge">
-          <div className="web-grunge-texture" />
-          <div className="web-grunge-scratch web-grunge-scratch-1" />
-          <div className="web-grunge-scratch web-grunge-scratch-2" />
         </div>
       );
 
