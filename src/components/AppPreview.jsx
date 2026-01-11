@@ -43,6 +43,34 @@ function AppPreview({ selectedStyle }) {
 
         {/* Screen Content */}
         <div className="iphone-screen" style={backgroundStyle}>
+          {/* Style-specific decorations */}
+          {selectedStyle === 'retro-futuristic' && (
+            <div className="ios-deco-retro">
+              <div className="ios-retro-grid" />
+            </div>
+          )}
+          {selectedStyle === 'vaporwave' && (
+            <div className="ios-deco-vapor">
+              <div className="ios-vapor-grid" />
+            </div>
+          )}
+          {selectedStyle === 'cyberpunk' && (
+            <div className="ios-deco-cyber">
+              <div className="ios-cyber-scanlines" />
+            </div>
+          )}
+          {selectedStyle === 'glassmorphism' && (
+            <div className="ios-deco-glass">
+              <div className="ios-glass-orb ios-glass-orb-1" />
+              <div className="ios-glass-orb ios-glass-orb-2" />
+            </div>
+          )}
+          {selectedStyle === 'gradient' && (
+            <div className="ios-deco-gradient">
+              <div className="ios-gradient-mesh" />
+            </div>
+          )}
+
           {/* Status Bar */}
           <div className="ios-status-bar">
             <span className="ios-time">9:41</span>
