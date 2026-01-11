@@ -276,44 +276,51 @@ function AppPreview({ selectedStyle }) {
           <nav className="ios-tab-bar">
             <button className="ios-tab active">
               <div className="ios-tab-badge">22</div>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 3L4 9v12h16V9l-8-6zm6 16h-4v-5h-4v5H6v-9l6-4.5 6 4.5v9z"/>
+              {/* Home/Dashboard icon */}
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3L4 9v12h5v-7h6v7h5V9l-8-6z"/>
               </svg>
               <span>Dashboard</span>
             </button>
             <button className="ios-tab">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round"/>
+              {/* Grammar - structured blocks/puzzle pieces */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+                <rect x="3" y="3" width="8" height="6" rx="1"/>
+                <rect x="13" y="3" width="8" height="6" rx="1"/>
+                <path d="M7 9v3h10V9" strokeLinecap="round"/>
+                <rect x="5" y="12" width="14" height="6" rx="1"/>
               </svg>
               <span>Grammar</span>
             </button>
             <button className="ios-tab">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="3" width="7" height="7" rx="1"/>
-                <rect x="14" y="3" width="7" height="7" rx="1"/>
-                <rect x="3" y="14" width="7" height="7" rx="1"/>
-                <rect x="14" y="14" width="7" height="7" rx="1"/>
+              {/* Decks - stacked cards */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+                <rect x="4" y="6" width="16" height="12" rx="2"/>
+                <path d="M7 6V4.5A1.5 1.5 0 018.5 3h7A1.5 1.5 0 0117 4.5V6"/>
+                <path d="M4 10h16"/>
               </svg>
               <span>Decks</span>
             </button>
             <button className="ios-tab">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z"/>
-                <path d="M8 12h8M12 8v8" strokeLinecap="round"/>
+              {/* Content - book with bookmark */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+                <path d="M4 4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15z"/>
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                <path d="M14 2v8l-2-1.5L10 10V2"/>
               </svg>
               <span>Content</span>
             </button>
             <button className="ios-tab">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <circle cx="11" cy="11" r="7"/>
-                <path d="M21 21l-4-4"/>
+              {/* Search - magnifying glass */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <circle cx="10.5" cy="10.5" r="7"/>
+                <path d="M21 21l-5-5"/>
               </svg>
               <span>Search</span>
             </button>
+            {/* Home Indicator */}
+            <div className="ios-home-indicator" />
           </nav>
-
-          {/* Home Indicator */}
-          <div className="ios-home-indicator" />
         </div>
       </div>
     </div>

@@ -1458,7 +1458,8 @@
 .ios-tab-bar {
   display: flex;
   justify-content: space-around;
-  padding: 6px 0 2px;
+  align-items: flex-start;
+  padding: 12px 8px 28px;
   background: var(--bg-secondary);
   border-top: 0.5px solid var(--border);
   backdrop-filter: blur(20px);
@@ -1468,34 +1469,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 4px 8px;
-  min-height: 44px;
+  gap: 4px;
+  padding: 8px 12px;
   background: none;
   border: none;
+  border-radius: 12px;
   color: var(--text-tertiary);
   cursor: pointer;
   position: relative;
+  transition: background 0.2s ease;
 }
 
 .ios-tab.active {
   color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.ios-tab svg {
+  width: 24px;
+  height: 24px;
 }
 
 .ios-tab span {
-  font-size: 9px;
+  font-size: 10px;
+  font-weight: 500;
 }
 
 .ios-tab-badge {
   position: absolute;
-  top: 0;
-  right: 2px;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 4px;
+  top: 2px;
+  right: 6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
   background: var(--secondary, #E57373);
-  border-radius: 8px;
-  font-size: 10px;
+  border-radius: 9px;
+  font-size: 11px;
   font-weight: 600;
   color: white;
   display: flex;
@@ -1505,12 +1514,15 @@
 
 /* iOS Home Indicator */
 .ios-home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 134px;
   height: 5px;
   background: var(--text-primary);
   opacity: 0.3;
   border-radius: 3px;
-  margin: 8px auto 8px;
 }
 
 /* ========================================
