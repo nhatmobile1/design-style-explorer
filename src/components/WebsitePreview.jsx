@@ -5,15 +5,16 @@ const styleImages = {
   // Minimalist/Zen styles - use serene, minimal images
   'minimalist': {
     hero: '/pexels-pixabay-301614.jpg', // Torii gate in water (B&W minimal)
-    cta: '/pexels-andrey-grushnikov-223358-707680.jpg', // Snowy temple
+    cta: '/pexels-szymon-shields-1503561-35573078.jpg', // Minimalist bread/ceramic
   },
   'zen': {
     hero: '/pexels-pixabay-301614.jpg',
-    cta: '/pexels-pixabay-302100.jpg', // Moss garden
+    cta: '/pexels-ryutaro-6249742.jpg', // Jizo statue with maple leaf
   },
   'wabi-sabi': {
-    hero: '/pexels-andrey-grushnikov-223358-707680.jpg',
-    cta: '/pexels-pixabay-302100.jpg',
+    hero: '/pexels-ryutaro-6249742.jpg', // Jizo statue with maple leaf
+    cta: '/pexels-eva-bronzini-5765839.jpg', // Traditional shopfront
+    testimonials: '/pexels-pixabay-302100.jpg',
   },
 
   // Japanese traditional styles
@@ -23,8 +24,9 @@ const styleImages = {
     testimonials: '/pexels-satoshi-1325837.jpg', // Geishas
   },
   'editorial': {
-    hero: '/pexels-evgeny-tchebotarev-1058775-2187661.jpg', // Person with umbrella
-    testimonials: '/pexels-satoshi-1325837.jpg',
+    hero: '/pexels-satoshi-1211839.jpg', // Person with red umbrella in rain
+    cta: '/pexels-eva-bronzini-5765839.jpg', // Traditional shopfront
+    testimonials: '/pexels-ryutaro-5205307.jpg', // Two geishas with umbrellas
   },
 
   // Cyberpunk/Neon styles - use night city images
@@ -47,8 +49,9 @@ const styleImages = {
 
   // Atmospheric/moody styles
   'atmospheric': {
-    hero: '/pexels-evgeny-tchebotarev-1058775-2187605.jpg', // Village rooftops
-    cta: '/pexels-itfeelslikefilm-590478.jpg',
+    hero: '/pexels-ryutaro-5205307.jpg', // Two geishas with umbrellas at dusk
+    cta: '/pexels-satoshi-1211839.jpg', // Person with red umbrella in rain
+    testimonials: '/pexels-evgeny-tchebotarev-1058775-2187605.jpg',
   },
   'dark-mode': {
     hero: '/pexels-itfeelslikefilm-590478.jpg',
@@ -56,47 +59,94 @@ const styleImages = {
   },
   'monochromatic': {
     hero: '/pexels-pixabay-301614.jpg',
-    cta: '/pexels-andrey-grushnikov-223358-707680.jpg',
+    cta: '/pexels-satoshi-1211839.jpg', // Person with red umbrella in rain
   },
 
   // Vibrant/colorful styles
   'bold': {
     hero: '/pexels-vincent-ma-janssen-1310788.jpg', // Orange torii gates
-    cta: '/pexels-belle-co-99483-402028.jpg',
+    cta: '/pexels-caleb-pineda-865309-35610136.jpg', // Colorful koi fish
   },
   'vibrant': {
     hero: '/pexels-vincent-ma-janssen-1310788.jpg',
+    cta: '/pexels-caleb-pineda-865309-35610136.jpg',
     testimonials: '/pexels-audrey-mari-1016051-3421920.jpg',
   },
 
   // Nature/organic styles
   'organic': {
-    hero: '/pexels-pixabay-302100.jpg',
-    cta: '/pexels-spdel-2758567.jpg', // Pavilion reflection
+    hero: '/pexels-lily-lili-17626726-35526523.jpg', // Koi in green water
+    cta: '/pexels-ryutaro-6249742.jpg', // Jizo statue with maple leaf
+    testimonials: '/pexels-pixabay-302100.jpg',
   },
   'nature': {
     hero: '/pexels-liger-pham-232622-1108701.jpg', // Mt Fuji lake
-    cta: '/pexels-spdel-2758567.jpg',
+    cta: '/pexels-lily-lili-17626726-35526523.jpg', // Koi in green water
   },
 
   // Soft/elegant styles
   'soft-pastel': {
-    hero: '/pexels-nien-tran-dinh-788736-1654748.jpg', // Himeji castle cherry blossoms
+    hero: '/pexels-ryutaro-5220032.jpg', // Pink cherry blossom petals
+    cta: '/pexels-nien-tran-dinh-788736-1654748.jpg', // Himeji castle
     testimonials: '/pexels-evgeny-tchebotarev-1058775-2187661.jpg',
   },
   'elegant': {
     hero: '/pexels-nien-tran-dinh-788736-1654748.jpg',
-    cta: '/pexels-tomas-malik-793526-3408353.jpg',
+    cta: '/pexels-loifotos-35588678.jpg', // Elegant sashimi bowl
   },
   'luxury': {
-    hero: '/pexels-tomas-malik-793526-3408353.jpg',
-    cta: '/pexels-belle-co-99483-402028.jpg',
+    hero: '/pexels-loifotos-35588678.jpg', // Elegant sashimi bowl
+    cta: '/pexels-tomas-malik-793526-3408353.jpg',
+    testimonials: '/pexels-szymon-shields-1503561-35573078.jpg',
   },
 
   // Cultural styles
   'cultural': {
     hero: '/pexels-satoshi-1325837.jpg',
-    cta: '/pexels-vincent-ma-janssen-1310788.jpg',
+    cta: '/pexels-ryutaro-5745864.jpg', // White paper lanterns
+  },
+
+  // Playful/Kawaii styles
+  'playful': {
+    hero: '/pexels-caleb-pineda-865309-35610136.jpg', // Colorful koi fish
+    cta: '/pexels-ryutaro-5220032.jpg', // Pink cherry blossom petals
+  },
+  'kawaii': {
+    hero: '/pexels-ryutaro-5220032.jpg', // Pink cherry blossom petals
+    cta: '/pexels-caleb-pineda-865309-35610136.jpg', // Colorful koi fish
+  },
+
+  // Industrial/Metro styles
+  'industrial': {
+    hero: '/pexels-siyarakbalik-35589759.jpg', // Tokyo Skytree street
+    cta: '/pexels-emiliano-lara-2150347322-35601986.jpg', // Shinkansen
+  },
+  'metro': {
+    hero: '/pexels-emiliano-lara-2150347322-35601986.jpg', // Shinkansen
+    cta: '/pexels-siyarakbalik-35589759.jpg', // Tokyo Skytree street
+  },
+
+  // Handcrafted/Artisan styles
+  'handcrafted': {
+    hero: '/pexels-eva-bronzini-5765839.jpg', // Traditional shopfront
+    cta: '/pexels-loifotos-35588678.jpg', // Elegant sashimi bowl
+    testimonials: '/pexels-ryutaro-6249742.jpg',
+  },
+
+  // Swiss/Academic styles
+  'swiss': {
+    hero: '/pexels-ryutaro-5745864.jpg', // White paper lanterns with kanji
+    cta: '/pexels-szymon-shields-1503561-35573078.jpg',
+  },
+  'academic': {
+    hero: '/pexels-ryutaro-5745864.jpg', // White paper lanterns with kanji
+    cta: '/pexels-eva-bronzini-5765839.jpg',
+  },
+
+  // Grid/Modular styles
+  'grid-modular': {
+    hero: '/pexels-loifotos-35588679.jpg', // Japanese meal set overhead
+    cta: '/pexels-szymon-shields-1503561-35573078.jpg',
   },
 
   // Styles that should have NO images
