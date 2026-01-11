@@ -1,6 +1,136 @@
 import { useState } from 'react';
 import { styleData } from '../data/styles';
 
+// ============================================
+// iOS HIG Compliance Utilities (for iOS prompt only)
+// ============================================
+
+// Calculate relative luminance for contrast ratio
+const getLuminance = (hex) => {
+  if (!hex || hex === 'transparent') return 1;
+  if (hex.startsWith('rgba') || hex.startsWith('rgb')) {
+    const match = hex.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+      const [, r, g, b] = match.map(Number);
+      return calculateLuminance(r, g, b);
+    }
+    return 0.5;
+  }
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return calculateLuminance(r, g, b);
+};
+
+const calculateLuminance = (r, g, b) => {
+  const [rs, gs, bs] = [r, g, b].map(c => {
+    c = c / 255;
+    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+};
+
+// Calculate WCAG contrast ratio
+const getContrastRatio = (color1, color2) => {
+  const l1 = getLuminance(color1);
+  const l2 = getLuminance(color2);
+  const lighter = Math.max(l1, l2);
+  const darker = Math.min(l1, l2);
+  return (lighter + 0.05) / (darker + 0.05);
+};
+
+// iOS-specific color adjustments for HIG compliance
+const iOSColorOverrides = {
+  'neomorphism': {
+    reason: 'Low contrast and transparent borders',
+    overrides: {
+      textPrimary: '#1A2A3A',
+      textSecondary: '#3A4A5A',
+      border: '#C0C5CC',
+      borderStrong: '#A0A5AC',
+    }
+  },
+  'glassmorphism': {
+    reason: 'Variable contrast on transparent backgrounds',
+    overrides: {
+      bgSecondary: 'rgba(255, 255, 255, 0.85)',
+      textSecondary: 'rgba(255, 255, 255, 0.9)',
+    }
+  },
+  'soft-pastel': {
+    reason: 'Low accent contrast on light background',
+    overrides: {
+      accent: '#C4788E',
+      accentSoft: 'rgba(196, 120, 142, 0.25)',
+    }
+  },
+  'kawaii': {
+    reason: 'Low accent contrast on light background',
+    overrides: {
+      accent: '#E5458A',
+      textSecondary: '#6A4A5A',
+    }
+  },
+  'claymorphism': {
+    reason: 'Transparent borders make form controls invisible',
+    overrides: {
+      border: '#D4C8E8',
+      borderStrong: '#B8A8D8',
+    }
+  },
+  'atmospheric': {
+    reason: 'Tertiary text too low contrast',
+    overrides: {
+      textTertiary: 'rgba(255, 255, 255, 0.6)',
+    }
+  },
+  'vaporwave': {
+    reason: 'Some text colors too low contrast',
+    overrides: {
+      textTertiary: '#D090E0',
+    }
+  },
+  'terminal': {
+    reason: 'Pure green can cause eye strain; add secondary colors',
+    note: 'Consider using cyan (#00FFFF) for links and amber (#FFB000) for warnings to avoid color-only information',
+  },
+  'retro-futuristic': {
+    reason: 'Pure neon colors can cause visual strain',
+    note: 'Consider reducing saturation slightly for extended use',
+  },
+};
+
+// Check if style has HIG compliance issues
+const getHIGComplianceStatus = (styleKey, colors) => {
+  const issues = [];
+
+  // Check text contrast on primary background
+  const textContrast = getContrastRatio(colors.textPrimary, colors.bgPrimary);
+  if (textContrast < 4.5) {
+    issues.push({ type: 'contrast', message: `Primary text contrast ${textContrast.toFixed(1)}:1 (needs 4.5:1)` });
+  }
+
+  const secondaryContrast = getContrastRatio(colors.textSecondary, colors.bgPrimary);
+  if (secondaryContrast < 4.5) {
+    issues.push({ type: 'contrast', message: `Secondary text contrast ${secondaryContrast.toFixed(1)}:1 (needs 4.5:1)` });
+  }
+
+  // Check for transparent borders
+  if (colors.border === 'transparent' || colors.border === 'rgba(0,0,0,0)') {
+    issues.push({ type: 'visibility', message: 'Transparent borders - form controls may be invisible' });
+  }
+
+  // Check if we have overrides for this style
+  const hasOverrides = iOSColorOverrides[styleKey];
+
+  return {
+    isCompliant: issues.length === 0 && !hasOverrides,
+    issues,
+    hasOverrides: !!hasOverrides,
+    overrideInfo: hasOverrides,
+  };
+};
+
 function StyleInfo({ selectedStyle, viewMode }) {
   const [copiedPrompt, setCopiedPrompt] = useState(false);
   const [promptType, setPromptType] = useState('web'); // 'web' or 'ios'
@@ -107,6 +237,37 @@ Please apply this design style to the interface I'm building. Ensure the design 
     };
     const isDarkStyle = bgLuminance(style.colors.bgPrimary) < 0.5;
 
+    // Get HIG compliance status and any overrides
+    const higStatus = getHIGComplianceStatus(selectedStyle, style.colors);
+    const overrideData = iOSColorOverrides[selectedStyle];
+
+    // Merge original colors with iOS-safe overrides
+    const iOSColors = overrideData?.overrides
+      ? { ...style.colors, ...overrideData.overrides }
+      : style.colors;
+
+    // Build HIG warning section if needed
+    let higWarningSection = '';
+    if (!higStatus.isCompliant || overrideData) {
+      higWarningSection = `
+---
+
+## ⚠️ HIG Compliance Adjustments
+
+This style required modifications for iOS HIG compliance:
+
+**Reason:** ${overrideData?.reason || 'Contrast ratio issues detected'}
+
+${overrideData?.overrides ? `**Color Overrides Applied:**
+${Object.entries(overrideData.overrides).map(([key, value]) => `- \`${key}\`: \`${style.colors[key]}\` → \`${value}\``).join('\n')}` : ''}
+
+${overrideData?.note ? `**Note:** ${overrideData.note}` : ''}
+
+${higStatus.issues.length > 0 ? `**Detected Issues:**
+${higStatus.issues.map(i => `- ${i.message}`).join('\n')}` : ''}
+`;
+    }
+
     return `I'd like you to create an iOS app interface using the "${style.name}" design style with SwiftUI.
 
 Reference URL: ${getPreviewUrl()}
@@ -117,6 +278,8 @@ Reference URL: ${getPreviewUrl()}
 
 **Best Used For:** ${style.tags.join(', ')}
 
+${!higStatus.isCompliant ? `**⚠️ iOS HIG Status:** This style has been adjusted for HIG compliance. See adjustments below.` : `**✅ iOS HIG Status:** This style meets accessibility requirements.`}
+${higWarningSection}
 ---
 
 ## HIG-Compliant Color System
@@ -128,19 +291,19 @@ Create a custom color scheme that adapts to light/dark mode:
 import SwiftUI
 
 extension Color {
-    // MARK: - ${style.name} Theme Colors
+    // MARK: - ${style.name} Theme Colors (iOS HIG-Adjusted)
 
-    static let themePrimary = ${hexToSwiftUI(style.colors.bgPrimary)}
-    static let themeSecondary = ${hexToSwiftUI(style.colors.bgSecondary)}
-    static let themeTertiary = ${hexToSwiftUI(style.colors.bgTertiary)}
+    static let themePrimary = ${hexToSwiftUI(iOSColors.bgPrimary)}
+    static let themeSecondary = ${hexToSwiftUI(iOSColors.bgSecondary)}
+    static let themeTertiary = ${hexToSwiftUI(iOSColors.bgTertiary)}
 
-    static let themeTextPrimary = ${hexToSwiftUI(style.colors.textPrimary)}
-    static let themeTextSecondary = ${hexToSwiftUI(style.colors.textSecondary)}
-    static let themeTextTertiary = ${hexToSwiftUI(style.colors.textTertiary)}
+    static let themeTextPrimary = ${hexToSwiftUI(iOSColors.textPrimary)}
+    static let themeTextSecondary = ${hexToSwiftUI(iOSColors.textSecondary)}
+    static let themeTextTertiary = ${hexToSwiftUI(iOSColors.textTertiary)}
 
-    static let themeAccent = ${hexToSwiftUI(style.colors.accent)}
-    static let themeAccentSoft = ${hexToSwiftUI(style.colors.accentSoft)}
-    static let themeBorder = ${hexToSwiftUI(style.colors.border)}
+    static let themeAccent = ${hexToSwiftUI(iOSColors.accent)}
+    static let themeAccentSoft = ${hexToSwiftUI(iOSColors.accentSoft)}
+    static let themeBorder = ${hexToSwiftUI(iOSColors.border)}
 }
 
 // For production, use Asset Catalog colors that support light/dark mode:
@@ -724,6 +887,33 @@ extension Color {
           iOS
         </button>
       </div>
+
+      {/* HIG Compliance Indicator (iOS only) */}
+      {promptType === 'ios' && (() => {
+        const higStatus = getHIGComplianceStatus(selectedStyle, style.colors);
+        const hasOverrides = iOSColorOverrides[selectedStyle];
+        return (
+          <div className={`hig-compliance-badge ${higStatus.isCompliant && !hasOverrides ? 'compliant' : 'adjusted'}`}>
+            {higStatus.isCompliant && !hasOverrides ? (
+              <>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>HIG Compliant</span>
+              </>
+            ) : (
+              <>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+                <span>Colors Adjusted for HIG</span>
+              </>
+            )}
+          </div>
+        );
+      })()}
 
       {/* Action Buttons */}
       <div className="style-actions">
