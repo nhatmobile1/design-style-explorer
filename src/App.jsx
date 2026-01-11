@@ -1,13 +1,65 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import StyleSelector from './components/StyleSelector';
 import StyleInfo from './components/StyleInfo';
 import AppPreview from './components/AppPreview';
 import WebsitePreview from './components/WebsitePreview';
+import { styleData } from './data/styles';
 import './App.css';
 
 function App() {
-  const [selectedStyle, setSelectedStyle] = useState('minimalist');
-  const [viewMode, setViewMode] = useState('app'); // 'app' or 'website'
+  const [searchParams, setSearchParams] = useSearchParams();
+  const styleFromUrl = searchParams.get('style');
+  const viewFromUrl = searchParams.get('view');
+  const previewOnly = searchParams.get('preview') === 'true';
+
+  // Initialize from URL or defaults
+  const [selectedStyle, setSelectedStyle] = useState(() => {
+    return styleFromUrl && styleData[styleFromUrl] ? styleFromUrl : 'minimalist';
+  });
+  const [viewMode, setViewMode] = useState(() => {
+    return viewFromUrl === 'website' ? 'website' : 'app';
+  });
+
+  // Sync URL when style or view changes (only in non-preview mode)
+  useEffect(() => {
+    if (!previewOnly) {
+      const newParams = new URLSearchParams();
+      newParams.set('style', selectedStyle);
+      newParams.set('view', viewMode);
+      setSearchParams(newParams, { replace: true });
+    }
+  }, [selectedStyle, viewMode, setSearchParams, previewOnly]);
+
+  // Handle URL changes (browser back/forward)
+  useEffect(() => {
+    if (styleFromUrl && styleData[styleFromUrl] && styleFromUrl !== selectedStyle) {
+      setSelectedStyle(styleFromUrl);
+    }
+    if (viewFromUrl && viewFromUrl !== viewMode) {
+      setViewMode(viewFromUrl === 'website' ? 'website' : 'app');
+    }
+  }, [styleFromUrl, viewFromUrl]);
+
+  // Preview-only mode: show just the preview without sidebars
+  if (previewOnly) {
+    const style = styleData[selectedStyle];
+    return (
+      <div className="preview-only-layout">
+        <div className="preview-only-header">
+          <h1>{style?.name || 'Design Style'}</h1>
+          <span className="preview-only-badge">{viewMode === 'app' ? 'App Preview' : 'Website Preview'}</span>
+        </div>
+        <div className="preview-only-content">
+          {viewMode === 'app' ? (
+            <AppPreview selectedStyle={selectedStyle} />
+          ) : (
+            <WebsitePreview selectedStyle={selectedStyle} />
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="app-layout">
@@ -55,7 +107,7 @@ function App() {
       </main>
 
       <aside className="sidebar-right">
-        <StyleInfo selectedStyle={selectedStyle} />
+        <StyleInfo selectedStyle={selectedStyle} viewMode={viewMode} />
       </aside>
     </div>
   );
