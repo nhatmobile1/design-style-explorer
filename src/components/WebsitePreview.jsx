@@ -1,7 +1,122 @@
 import { styleData } from '../data/styles';
 
+// Image mappings for different styles
+const styleImages = {
+  // Minimalist/Zen styles - use serene, minimal images
+  'minimalist': {
+    hero: '/pexels-pixabay-301614.jpg', // Torii gate in water (B&W minimal)
+    cta: '/pexels-andrey-grushnikov-223358-707680.jpg', // Snowy temple
+  },
+  'zen': {
+    hero: '/pexels-pixabay-301614.jpg',
+    cta: '/pexels-pixabay-302100.jpg', // Moss garden
+  },
+  'wabi-sabi': {
+    hero: '/pexels-andrey-grushnikov-223358-707680.jpg',
+    cta: '/pexels-pixabay-302100.jpg',
+  },
+
+  // Japanese traditional styles
+  'japanese': {
+    hero: '/pexels-belle-co-99483-402028.jpg', // Pagoda sunset
+    cta: '/pexels-tomas-malik-793526-3408353.jpg', // Mt Fuji with pagoda
+    testimonials: '/pexels-satoshi-1325837.jpg', // Geishas
+  },
+  'editorial': {
+    hero: '/pexels-evgeny-tchebotarev-1058775-2187661.jpg', // Person with umbrella
+    testimonials: '/pexels-satoshi-1325837.jpg',
+  },
+
+  // Cyberpunk/Neon styles - use night city images
+  'cyberpunk': {
+    hero: '/pexels-haugenzhays-1798631.jpg', // Dotonbori neon
+    cta: '/pexels-audrey-mari-1016051-3421920.jpg', // Red lanterns
+  },
+  'neon': {
+    hero: '/pexels-haugenzhays-1798631.jpg',
+    cta: '/pexels-audrey-mari-1016051-3421920.jpg',
+  },
+  'vaporwave': {
+    hero: '/pexels-haugenzhays-1798631.jpg',
+    testimonials: '/pexels-itfeelslikefilm-590478.jpg', // Night alley
+  },
+  'retro-futuristic': {
+    hero: '/pexels-audrey-mari-1016051-3421920.jpg',
+    cta: '/pexels-haugenzhays-1798631.jpg',
+  },
+
+  // Atmospheric/moody styles
+  'atmospheric': {
+    hero: '/pexels-evgeny-tchebotarev-1058775-2187605.jpg', // Village rooftops
+    cta: '/pexels-itfeelslikefilm-590478.jpg',
+  },
+  'dark-mode': {
+    hero: '/pexels-itfeelslikefilm-590478.jpg',
+    cta: '/pexels-audrey-mari-1016051-3421920.jpg',
+  },
+  'monochromatic': {
+    hero: '/pexels-pixabay-301614.jpg',
+    cta: '/pexels-andrey-grushnikov-223358-707680.jpg',
+  },
+
+  // Vibrant/colorful styles
+  'bold': {
+    hero: '/pexels-vincent-ma-janssen-1310788.jpg', // Orange torii gates
+    cta: '/pexels-belle-co-99483-402028.jpg',
+  },
+  'vibrant': {
+    hero: '/pexels-vincent-ma-janssen-1310788.jpg',
+    testimonials: '/pexels-audrey-mari-1016051-3421920.jpg',
+  },
+
+  // Nature/organic styles
+  'organic': {
+    hero: '/pexels-pixabay-302100.jpg',
+    cta: '/pexels-spdel-2758567.jpg', // Pavilion reflection
+  },
+  'nature': {
+    hero: '/pexels-liger-pham-232622-1108701.jpg', // Mt Fuji lake
+    cta: '/pexels-spdel-2758567.jpg',
+  },
+
+  // Soft/elegant styles
+  'soft-pastel': {
+    hero: '/pexels-nien-tran-dinh-788736-1654748.jpg', // Himeji castle cherry blossoms
+    testimonials: '/pexels-evgeny-tchebotarev-1058775-2187661.jpg',
+  },
+  'elegant': {
+    hero: '/pexels-nien-tran-dinh-788736-1654748.jpg',
+    cta: '/pexels-tomas-malik-793526-3408353.jpg',
+  },
+  'luxury': {
+    hero: '/pexels-tomas-malik-793526-3408353.jpg',
+    cta: '/pexels-belle-co-99483-402028.jpg',
+  },
+
+  // Cultural styles
+  'cultural': {
+    hero: '/pexels-satoshi-1325837.jpg',
+    cta: '/pexels-vincent-ma-janssen-1310788.jpg',
+  },
+
+  // Styles that should have NO images
+  'terminal': {},
+
+  // Default fallback for styles without specific images
+  'default': {
+    hero: '/pexels-belle-co-99483-402028.jpg',
+    cta: '/pexels-liger-pham-232622-1108701.jpg',
+  }
+};
+
+// Get images for a style, with fallback
+function getStyleImages(styleId) {
+  return styleImages[styleId] || styleImages['default'];
+}
+
 function WebsitePreview({ selectedStyle }) {
   const style = styleData[selectedStyle];
+  const images = getStyleImages(selectedStyle);
 
   if (!style) {
     return <div className="website-preview">Select a style to preview</div>;
@@ -65,7 +180,8 @@ function WebsitePreview({ selectedStyle }) {
         </nav>
 
         {/* Hero Section */}
-        <section className="web-hero">
+        <section className="web-hero" style={images.hero ? { '--hero-image': `url(${images.hero})` } : {}}>
+          {images.hero && <div className="web-hero-bg" />}
           <div className="web-hero-content">
             <div className="web-badge">New: AI-powered learning paths</div>
             <h1 className="web-hero-title">
@@ -482,7 +598,8 @@ function WebsitePreview({ selectedStyle }) {
         </section>
 
         {/* CTA Section */}
-        <section className="web-cta">
+        <section className="web-cta" style={images.cta ? { '--cta-image': `url(${images.cta})` } : {}}>
+          {images.cta && <div className="web-cta-bg" />}
           <div className="web-cta-content">
             <h2>Ready to start your journey?</h2>
             <p>Join thousands of learners mastering Japanese every day.</p>
@@ -587,7 +704,8 @@ function WebsitePreview({ selectedStyle }) {
         </section>
 
         {/* Testimonials */}
-        <section className="web-testimonials">
+        <section className="web-testimonials" style={images.testimonials ? { '--testimonials-image': `url(${images.testimonials})` } : {}}>
+          {images.testimonials && <div className="web-testimonials-bg" />}
           <h2 className="web-section-title">Loved by learners</h2>
           <div className="web-testimonial-grid">
             <div className="web-testimonial">

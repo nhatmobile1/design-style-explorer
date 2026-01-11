@@ -1634,6 +1634,30 @@
   grid-template-columns: 1fr 1fr;
   gap: 64px;
   align-items: center;
+  position: relative;
+}
+
+/* Hero Background Image */
+.web-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background-image: var(--hero-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.web-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, transparent 20%, transparent 80%, var(--bg-primary) 100%);
 }
 
 .web-badge {
@@ -1901,11 +1925,34 @@
   border-bottom: 1px solid var(--border);
   padding: 80px 32px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* CTA Background Image */
+.web-cta-bg {
+  position: absolute;
+  inset: 0;
+  background-image: var(--cta-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.web-cta-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, transparent 30%, transparent 70%, var(--bg-secondary) 100%);
 }
 
 .web-cta-content {
   max-width: 560px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .web-cta h2 {
@@ -1954,6 +2001,35 @@
   margin: 0 auto;
   padding: 80px 32px;
   text-align: center;
+  position: relative;
+}
+
+/* Testimonials Background Image */
+.web-testimonials-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background-image: var(--testimonials-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.web-testimonials-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, transparent 20%, transparent 80%, var(--bg-primary) 100%);
+}
+
+.web-testimonials > * {
+  position: relative;
+  z-index: 1;
 }
 
 .web-testimonial-grid {
@@ -2102,6 +2178,57 @@
   padding: 6px 12px;
   border-radius: var(--radius);
   color: var(--accent);
+}
+
+/* ========================================
+   Style-Specific Background Image Opacity
+   ======================================== */
+
+/* Styles that benefit from stronger image presence */
+.style-atmospheric .web-hero-bg,
+.style-editorial .web-hero-bg,
+.style-luxury .web-hero-bg,
+.style-japanese .web-hero-bg {
+  opacity: 0.25;
+}
+
+.style-cyberpunk .web-hero-bg,
+.style-vaporwave .web-hero-bg,
+.style-neon .web-hero-bg {
+  opacity: 0.2;
+  mix-blend-mode: screen;
+}
+
+.style-dark-mode .web-hero-bg,
+.style-monochromatic .web-hero-bg {
+  opacity: 0.12;
+  filter: grayscale(100%);
+}
+
+.style-minimalist .web-hero-bg,
+.style-zen .web-hero-bg,
+.style-wabi-sabi .web-hero-bg {
+  opacity: 0.1;
+  filter: grayscale(50%);
+}
+
+/* CTA backgrounds - slightly stronger for editorial styles */
+.style-editorial .web-cta-bg,
+.style-atmospheric .web-cta-bg,
+.style-luxury .web-cta-bg {
+  opacity: 0.18;
+}
+
+.style-cyberpunk .web-cta-bg,
+.style-vaporwave .web-cta-bg {
+  opacity: 0.15;
+  mix-blend-mode: screen;
+}
+
+/* Testimonials backgrounds */
+.style-editorial .web-testimonials-bg,
+.style-japanese .web-testimonials-bg {
+  opacity: 0.12;
 }
 
 /* ========================================
