@@ -75,290 +75,240 @@ function AppPreview({ selectedStyle }) {
           <div className="ios-status-bar">
             <span className="ios-time">9:41</span>
             <div className="ios-status-icons">
-              {/* SF Symbol: signal bars */}
               <svg className="ios-signal" width="18" height="12" viewBox="0 0 18 12" fill="currentColor">
                 <rect x="0" y="7" width="3" height="5" rx="0.75" />
                 <rect x="5" y="4.5" width="3" height="7.5" rx="0.75" />
                 <rect x="10" y="2" width="3" height="10" rx="0.75" />
                 <rect x="15" y="0" width="3" height="12" rx="0.75" opacity="0.35" />
               </svg>
-              {/* SF Symbol: wifi */}
               <svg className="ios-wifi" width="16" height="12" viewBox="0 0 16 12" fill="currentColor">
                 <path d="M8 10a1.25 1.25 0 110 2.5A1.25 1.25 0 018 10z" />
                 <path d="M5.17 8.17a4 4 0 015.66 0" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 <path d="M2.34 5.34a8 8 0 0111.32 0" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
-              {/* Battery */}
               <div className="ios-battery">
                 <div className="ios-battery-level" />
-                <span className="ios-battery-percent">80</span>
               </div>
             </div>
           </div>
 
-          {/* iOS Navigation Bar with back button and actions */}
-          <header className="ios-nav-bar">
-            <div className="ios-nav-top">
-              <button className="ios-nav-back" aria-label="Back">
-                {/* SF Symbol: chevron.left */}
-                <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M10 2L2 10L10 18" />
+          {/* Header with menu and actions */}
+          <header className="ios-header">
+            <div className="ios-header-row">
+              <button className="ios-header-btn">
+                <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M1 2h18M1 7h18M1 12h18" />
                 </svg>
-                <span>Back</span>
               </button>
-              <div className="ios-nav-actions">
-                {/* SF Symbol: square.and.arrow.up */}
-                <button className="ios-nav-action" aria-label="Share">
-                  <svg width="20" height="22" viewBox="0 0 20 22" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M10 14V2M10 2L5 7M10 2L15 7" />
-                    <path d="M3 12v6a2 2 0 002 2h10a2 2 0 002-2v-6" />
-                  </svg>
-                </button>
-                {/* SF Symbol: ellipsis.circle */}
-                <button className="ios-nav-action" aria-label="More">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.75">
-                    <circle cx="11" cy="11" r="9" />
-                    <circle cx="6.5" cy="11" r="1" fill="currentColor" />
-                    <circle cx="11" cy="11" r="1" fill="currentColor" />
-                    <circle cx="15.5" cy="11" r="1" fill="currentColor" />
-                  </svg>
-                </button>
-              </div>
+              <h1 className="ios-header-title">Dashboard</h1>
+              <button className="ios-header-btn">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10 2a6 6 0 00-6 6v4l-2 2v1h16v-1l-2-2V8a6 6 0 00-6-6z" />
+                  <path d="M10 18a2 2 0 002-2H8a2 2 0 002 2z" />
+                </svg>
+              </button>
             </div>
-            <div className="ios-nav-title-large">日本語</div>
-            <div className="ios-nav-subtitle">Japanese Learning</div>
           </header>
-
-          {/* iOS Search Bar */}
-          <div className="ios-search-container">
-            <div className="ios-search-bar">
-              {/* SF Symbol: magnifyingglass */}
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
-                <circle cx="7" cy="7" r="5.25" />
-                <path d="M14 14L11 11" />
-              </svg>
-              <span>Search</span>
-              {/* SF Symbol: mic.fill */}
-              <svg className="ios-search-mic" width="12" height="16" viewBox="0 0 12 16" fill="currentColor" opacity="0.5">
-                <rect x="3" y="0" width="6" height="10" rx="3" />
-                <path d="M1 7v1a5 5 0 0010 0V7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M6 13v3M4 16h4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            </div>
-          </div>
 
           {/* Scrollable Content */}
           <div className="ios-scroll-content">
-            {/* iOS Segmented Control */}
-            <div className="ios-segmented-control">
-              <div className="ios-segment-bg" />
-              <button className="ios-segment active">Phrases</button>
-              <button className="ios-segment">Kanji</button>
-              <button className="ios-segment">Grammar</button>
+
+            {/* Primary Action Card */}
+            <div className="ios-action-banner">
+              <div className="ios-banner-content">
+                <span className="ios-banner-label">Learn</span>
+                <span className="ios-banner-value">0/5</span>
+              </div>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" opacity="0.6">
+                <path d="M7 4l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
 
-            {/* Section Header */}
-            <div className="ios-section-header">
-              <span className="ios-section-title">Today's Phrases</span>
-              <button className="ios-section-action">See All</button>
+            {/* Secondary Action Card */}
+            <div className="ios-action-banner ios-action-banner-secondary">
+              <div className="ios-banner-content">
+                <span className="ios-banner-label">Review</span>
+                <span className="ios-banner-sublabel">Grammar & Vocab</span>
+              </div>
+              <div className="ios-banner-badge">22</div>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" opacity="0.6">
+                <path d="M7 4l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
 
-            {/* iOS Inset Grouped List */}
-            <div className="ios-list-inset-grouped">
-              <div className="ios-list-item">
-                <div className="ios-list-icon-container">
-                  {/* SF Symbol: character.bubble.fill */}
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent)">
-                    <path d="M12 2C6.48 2 2 5.58 2 10c0 2.33 1.3 4.42 3.36 5.82L4 20l5-2.5c.97.16 1.97.25 3 .25 5.52 0 10-3.58 10-8S17.52 2 12 2z" />
-                    <text x="12" y="12.5" textAnchor="middle" fill="white" fontSize="8" fontWeight="600">あ</text>
-                  </svg>
-                </div>
-                <div className="ios-list-content">
-                  <div className="ios-list-title">おはようございます</div>
-                  <div className="ios-list-subtitle">Ohayou gozaimasu • Good morning</div>
-                </div>
-                <div className="ios-list-accessory">
-                  {/* SF Symbol: chevron.right */}
-                  <svg width="7" height="12" viewBox="0 0 7 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.3">
-                    <path d="M1 1l5 5-5 5" />
-                  </svg>
-                </div>
+            {/* User Profile Card */}
+            <div className="ios-profile-card">
+              <div className="ios-profile-avatar">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="var(--accent)">
+                  <circle cx="14" cy="10" r="6" />
+                  <path d="M4 26c0-5.5 4.5-10 10-10s10 4.5 10 10" />
+                </svg>
               </div>
-
-              <div className="ios-list-item">
-                <div className="ios-list-icon-container">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--secondary)">
-                    <path d="M12 2C6.48 2 2 5.58 2 10c0 2.33 1.3 4.42 3.36 5.82L4 20l5-2.5c.97.16 1.97.25 3 .25 5.52 0 10-3.58 10-8S17.52 2 12 2z" />
-                    <text x="12" y="12.5" textAnchor="middle" fill="white" fontSize="8" fontWeight="600">あ</text>
-                  </svg>
-                </div>
-                <div className="ios-list-content">
-                  <div className="ios-list-title">ありがとうございます</div>
-                  <div className="ios-list-subtitle">Arigatou gozaimasu • Thank you</div>
-                </div>
-                <div className="ios-list-accessory">
-                  <svg width="7" height="12" viewBox="0 0 7 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.3">
-                    <path d="M1 1l5 5-5 5" />
-                  </svg>
-                </div>
+              <div className="ios-profile-info">
+                <span className="ios-profile-name">nhatmobile</span>
+                <span className="ios-profile-level">Lvl 37 (460 XP until Lvl 38)</span>
               </div>
+            </div>
 
-              <div className="ios-list-item">
-                <div className="ios-list-icon-container">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent)">
-                    <path d="M12 2C6.48 2 2 5.58 2 10c0 2.33 1.3 4.42 3.36 5.82L4 20l5-2.5c.97.16 1.97.25 3 .25 5.52 0 10-3.58 10-8S17.52 2 12 2z" />
-                    <text x="12" y="12.5" textAnchor="middle" fill="white" fontSize="8" fontWeight="600">あ</text>
+            {/* Stats Row */}
+            <div className="ios-stats-row">
+              <div className="ios-stat-card">
+                <div className="ios-stat-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--accent)">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l4.59-4.58L18 11l-6 6z"/>
                   </svg>
                 </div>
-                <div className="ios-list-content">
-                  <div className="ios-list-title">すみません</div>
-                  <div className="ios-list-subtitle">Sumimasen • Excuse me</div>
-                </div>
-                <div className="ios-list-accessory">
-                  <svg width="7" height="12" viewBox="0 0 7 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.3">
-                    <path d="M1 1l5 5-5 5" />
+                <span className="ios-stat-value">70</span>
+                <span className="ios-stat-label">Days Studied</span>
+              </div>
+              <div className="ios-stat-card">
+                <div className="ios-stat-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--accent)">
+                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/>
                   </svg>
+                </div>
+                <span className="ios-stat-value">100%</span>
+                <span className="ios-stat-label">Last Session</span>
+              </div>
+              <div className="ios-stat-card">
+                <div className="ios-stat-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--accent)">
+                    <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/>
+                  </svg>
+                </div>
+                <span className="ios-stat-value">156</span>
+                <span className="ios-stat-label">Items Studied</span>
+              </div>
+            </div>
+
+            {/* Streak Card */}
+            <div className="ios-streak-card">
+              <div className="ios-streak-header">
+                <span className="ios-streak-title">Current Streak – 1</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-tertiary)">
+                  <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                </svg>
+              </div>
+              <div className="ios-streak-days">
+                <div className="ios-streak-day">
+                  <div className="ios-streak-dot"></div>
+                  <span>5月</span>
+                </div>
+                <div className="ios-streak-day">
+                  <div className="ios-streak-dot"></div>
+                  <span>6火</span>
+                </div>
+                <div className="ios-streak-day">
+                  <div className="ios-streak-dot"></div>
+                  <span>7水</span>
+                </div>
+                <div className="ios-streak-day">
+                  <div className="ios-streak-dot"></div>
+                  <span>8木</span>
+                </div>
+                <div className="ios-streak-day">
+                  <div className="ios-streak-dot"></div>
+                  <span>9金</span>
+                </div>
+                <div className="ios-streak-day">
+                  <div className="ios-streak-dot ios-streak-dot-active"></div>
+                  <span>10土</span>
+                </div>
+                <div className="ios-streak-day">
+                  <div className="ios-streak-dot ios-streak-dot-empty"></div>
+                  <span>11日</span>
                 </div>
               </div>
             </div>
 
             {/* Progress Section */}
-            <div className="ios-section-header">
-              <span className="ios-section-title">Your Progress</span>
-            </div>
+            <div className="ios-progress-section">
+              <div className="ios-progress-header">
+                <span className="ios-progress-title">JLPT Progress (Grammar)</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-tertiary)">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M12 6v6l4 2" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
 
-            {/* iOS Progress Widget Card */}
-            <div className="ios-widget-card">
-              <div className="ios-widget-header">
-                <div className="ios-widget-icon">
-                  {/* SF Symbol: flame.fill */}
-                  <svg width="18" height="22" viewBox="0 0 18 22" fill="url(#flameGradient)">
-                    <defs>
-                      <linearGradient id="flameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                        <stop offset="0%" stopColor="#FF9500" />
-                        <stop offset="100%" stopColor="#FF3B30" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M9 22c-5 0-8-3.5-8-8 0-3 1.5-5.5 3.5-7.5C6 5 7 3 7 1c0 0 2 1.5 3 4 .5-1 1.5-2.5 1.5-2.5S14 5 14 8c0 1.5-.5 3-1.5 4 2-1 3.5-3 3.5-3s2 2.5 2 5c0 4.5-3 8-9 8z" />
-                  </svg>
+              <div className="ios-progress-list">
+                <div className="ios-progress-row">
+                  <span className="ios-progress-label">N5</span>
+                  <div className="ios-progress-track">
+                    <div className="ios-progress-bar-fill" style={{ width: '87%' }}></div>
+                  </div>
+                  <span className="ios-progress-count">111/127</span>
                 </div>
-                <div className="ios-widget-title">
-                  <span className="ios-widget-label">Daily Streak</span>
-                  <span className="ios-widget-value">12 days</span>
+                <div className="ios-progress-row">
+                  <span className="ios-progress-label">N4</span>
+                  <div className="ios-progress-track">
+                    <div className="ios-progress-bar-fill" style={{ width: '19%' }}></div>
+                  </div>
+                  <span className="ios-progress-count">34/178</span>
+                </div>
+                <div className="ios-progress-row">
+                  <span className="ios-progress-label">N3</span>
+                  <div className="ios-progress-track">
+                    <div className="ios-progress-bar-fill ios-progress-bar-low" style={{ width: '1%' }}></div>
+                  </div>
+                  <span className="ios-progress-count">3/219</span>
+                </div>
+                <div className="ios-progress-row">
+                  <span className="ios-progress-label">N2</span>
+                  <div className="ios-progress-track">
+                    <div className="ios-progress-bar-fill" style={{ width: '0%' }}></div>
+                  </div>
+                  <span className="ios-progress-count">0/217</span>
+                </div>
+                <div className="ios-progress-row">
+                  <span className="ios-progress-label">N1</span>
+                  <div className="ios-progress-track">
+                    <div className="ios-progress-bar-fill" style={{ width: '0%' }}></div>
+                  </div>
+                  <span className="ios-progress-count">0/184</span>
                 </div>
               </div>
-              <div className="ios-widget-stats">
-                <div className="ios-mini-stat">
-                  <span className="ios-mini-stat-value">156</span>
-                  <span className="ios-mini-stat-label">Words</span>
-                </div>
-                <div className="ios-mini-stat-divider" />
-                <div className="ios-mini-stat">
-                  <span className="ios-mini-stat-value">23m</span>
-                  <span className="ios-mini-stat-label">Today</span>
-                </div>
-                <div className="ios-mini-stat-divider" />
-                <div className="ios-mini-stat">
-                  <span className="ios-mini-stat-value">75%</span>
-                  <span className="ios-mini-stat-label">Goal</span>
-                </div>
-              </div>
-              <div className="ios-progress-bar">
-                <div className="ios-progress-fill" style={{ width: '75%' }} />
-              </div>
             </div>
 
-            {/* Quick Actions - iOS Small Widget Grid */}
-            <div className="ios-section-header">
-              <span className="ios-section-title">Quick Practice</span>
-            </div>
-
-            <div className="ios-widget-grid">
-              <button className="ios-small-widget">
-                <div className="ios-small-widget-icon">
-                  {/* SF Symbol: rectangle.on.rectangle */}
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent)">
-                    <rect x="2" y="6" width="14" height="12" rx="2" fill="none" stroke="var(--accent)" strokeWidth="1.75" />
-                    <rect x="8" y="2" width="14" height="12" rx="2" />
-                  </svg>
-                </div>
-                <span className="ios-small-widget-label">Flashcards</span>
-              </button>
-              <button className="ios-small-widget">
-                <div className="ios-small-widget-icon">
-                  {/* SF Symbol: waveform */}
-                  <svg width="20" height="16" viewBox="0 0 22 18" fill="var(--accent)">
-                    <rect x="1" y="6" width="2" height="6" rx="1" />
-                    <rect x="5" y="3" width="2" height="12" rx="1" />
-                    <rect x="9" y="0" width="2" height="18" rx="1" />
-                    <rect x="13" y="4" width="2" height="10" rx="1" />
-                    <rect x="17" y="7" width="2" height="4" rx="1" />
-                  </svg>
-                </div>
-                <span className="ios-small-widget-label">Listening</span>
-              </button>
-              <button className="ios-small-widget">
-                <div className="ios-small-widget-icon">
-                  {/* SF Symbol: pencil.line */}
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent)">
-                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z" />
-                    <path d="M20.71 5.63l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83a1 1 0 000-1.41z" />
-                  </svg>
-                </div>
-                <span className="ios-small-widget-label">Writing</span>
-              </button>
-              <button className="ios-small-widget">
-                <div className="ios-small-widget-icon">
-                  {/* SF Symbol: mic.fill */}
-                  <svg width="16" height="20" viewBox="0 0 18 24" fill="var(--accent)">
-                    <rect x="5" y="1" width="8" height="14" rx="4" />
-                    <path d="M1 11v2a8 8 0 0016 0v-2" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M9 19v4M5 23h8" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </div>
-                <span className="ios-small-widget-label">Speaking</span>
-              </button>
-            </div>
-
-            {/* Style indicator - subtle */}
-            <div className="ios-footer-info">
-              <span className="ios-footer-label">Style: {style.name}</span>
-            </div>
           </div>
 
           {/* iOS Tab Bar */}
           <nav className="ios-tab-bar">
             <button className="ios-tab active">
-              {/* SF Symbol: house.fill */}
-              <svg width="24" height="22" viewBox="0 0 24 22" fill="currentColor">
-                <path d="M12 0L0 10h3v12h6v-8h6v8h6V10h3L12 0z" />
+              <div className="ios-tab-badge">22</div>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3L4 9v12h16V9l-8-6zm6 16h-4v-5h-4v5H6v-9l6-4.5 6 4.5v9z"/>
               </svg>
-              <span>Home</span>
+              <span>Dashboard</span>
             </button>
             <button className="ios-tab">
-              {/* SF Symbol: magnifyingglass */}
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <circle cx="9.5" cy="9.5" r="7" />
-                <path d="M20 20l-5-5" />
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round"/>
+              </svg>
+              <span>Grammar</span>
+            </button>
+            <button className="ios-tab">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+              <span>Decks</span>
+            </button>
+            <button className="ios-tab">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z"/>
+                <path d="M8 12h8M12 8v8" strokeLinecap="round"/>
+              </svg>
+              <span>Content</span>
+            </button>
+            <button className="ios-tab">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <circle cx="11" cy="11" r="7"/>
+                <path d="M21 21l-4-4"/>
               </svg>
               <span>Search</span>
-            </button>
-            <button className="ios-tab">
-              {/* SF Symbol: book.fill */}
-              <svg width="22" height="20" viewBox="0 0 22 20" fill="none" stroke="currentColor" strokeWidth="1.75">
-                <path d="M1 2.5A1.5 1.5 0 012.5 1h5A2.5 2.5 0 0110 3.5V19a1.5 1.5 0 00-1.5-1.5h-6A1.5 1.5 0 011 16V2.5z" />
-                <path d="M21 2.5A1.5 1.5 0 0019.5 1h-5A2.5 2.5 0 0012 3.5V19a1.5 1.5 0 011.5-1.5h6A1.5 1.5 0 0021 16V2.5z" />
-              </svg>
-              <span>Library</span>
-            </button>
-            <button className="ios-tab">
-              {/* SF Symbol: person.crop.circle */}
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.75">
-                <circle cx="11" cy="11" r="10" />
-                <circle cx="11" cy="8" r="3" />
-                <path d="M5.5 18.5a6 6 0 0111 0" />
-              </svg>
-              <span>Profile</span>
             </button>
           </nav>
 
