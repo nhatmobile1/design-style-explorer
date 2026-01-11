@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import StyleSelector from './components/StyleSelector';
 import StyleInfo from './components/StyleInfo';
+import SkillsDownload from './components/SkillsDownload';
 import AppPreview from './components/AppPreview';
 import WebsitePreview from './components/WebsitePreview';
 import { styleData } from './data/styles';
@@ -108,6 +109,7 @@ function App() {
 
       <aside className="sidebar-right">
         <StyleInfo selectedStyle={selectedStyle} viewMode={viewMode} />
+        <SkillsDownload />
       </aside>
     </div>
   );

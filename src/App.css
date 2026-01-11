@@ -270,6 +270,46 @@
   color: #fff;
 }
 
+/* Platform Toggle */
+.platform-toggle {
+  display: flex;
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 3px;
+  margin-bottom: 12px;
+  border: 1px solid #2a2a2a;
+}
+
+.platform-toggle-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.platform-toggle-btn:hover {
+  color: #ccc;
+}
+
+.platform-toggle-btn.active {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.platform-toggle-btn svg {
+  flex-shrink: 0;
+}
+
 /* Action Buttons */
 .style-actions {
   display: grid;
@@ -11302,5 +11342,215 @@
 
   .web-pricing-amount {
     font-size: 36px;
+  }
+}
+
+/* ========================================
+   Skills Download Section
+   ======================================== */
+.skills-download {
+  margin-top: 24px;
+  padding: 20px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+}
+
+.skills-download-header {
+  margin-bottom: 16px;
+}
+
+.skills-download-header h3 {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.skills-download-header p {
+  margin: 0;
+  font-size: 12px;
+  color: #888;
+}
+
+.skills-download-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.skills-download-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.skills-download-btn-primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+}
+
+.skills-download-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5558e3, #7c4de8);
+  transform: translateY(-1px);
+}
+
+.skills-download-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.skills-download-btn-secondary {
+  background: #2a2a2a;
+  color: #ccc;
+  border: 1px solid #3a3a3a;
+}
+
+.skills-download-btn-secondary:hover {
+  background: #333;
+  color: #fff;
+}
+
+.skills-download-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 11px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.skills-download-toggle:hover {
+  color: #999;
+}
+
+.skills-download-instructions {
+  background: #0f0f0f;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.instruction-step {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.instruction-step:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.instruction-step:first-child {
+  padding-top: 0;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2a2a2a;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content strong {
+  display: block;
+  font-size: 12px;
+  color: #ccc;
+  margin-bottom: 4px;
+}
+
+.step-content p {
+  margin: 0;
+  font-size: 11px;
+  color: #666;
+}
+
+.step-content code {
+  display: block;
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: #1a1a1a;
+  border-radius: 6px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  color: #a78bfa;
+  overflow-x: auto;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #0f0f0f;
+  border-radius: 8px;
+}
+
+.skill-name {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  color: #a78bfa;
+  flex-shrink: 0;
+}
+
+.skill-desc {
+  font-size: 11px;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Mobile adjustments for skills download */
+@media (max-width: 768px) {
+  .skills-download {
+    margin-top: 16px;
+    padding: 16px;
+  }
+
+  .skills-download-actions {
+    flex-direction: column;
+  }
+
+  .skill-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 }

@@ -3,6 +3,7 @@ import { styleData } from '../data/styles';
 
 function StyleInfo({ selectedStyle, viewMode }) {
   const [copiedPrompt, setCopiedPrompt] = useState(false);
+  const [promptType, setPromptType] = useState('web'); // 'web' or 'ios'
 
   const style = styleData[selectedStyle];
 
@@ -80,9 +81,219 @@ ${style.colors.border === 'transparent' ? '- Note: This style uses transparent b
 Please apply this design style to the interface I'm building. Ensure the design is fully mobile responsive.`;
   };
 
+  const generateiOSPrompt = () => {
+    // Convert hex to SwiftUI Color format
+    const hexToSwiftUI = (hex) => {
+      if (hex.startsWith('rgba')) {
+        const match = hex.match(/rgba?\((\d+),\s*(\d+),\s*(\d+),?\s*([\d.]+)?\)/);
+        if (match) {
+          const [, r, g, b, a] = match;
+          return `Color(red: ${(parseInt(r)/255).toFixed(3)}, green: ${(parseInt(g)/255).toFixed(3)}, blue: ${(parseInt(b)/255).toFixed(3)}, opacity: ${a || 1})`;
+        }
+      }
+      const r = parseInt(hex.slice(1,3), 16);
+      const g = parseInt(hex.slice(3,5), 16);
+      const b = parseInt(hex.slice(5,7), 16);
+      return `Color(red: ${(r/255).toFixed(3)}, green: ${(g/255).toFixed(3)}, blue: ${(b/255).toFixed(3)})`;
+    };
+
+    // Determine if style is dark or light
+    const bgLuminance = (hex) => {
+      if (hex.startsWith('rgba') || hex.startsWith('rgb')) return 0.5;
+      const r = parseInt(hex.slice(1,3), 16) / 255;
+      const g = parseInt(hex.slice(3,5), 16) / 255;
+      const b = parseInt(hex.slice(5,7), 16) / 255;
+      return 0.299 * r + 0.587 * g + 0.114 * b;
+    };
+    const isDarkStyle = bgLuminance(style.colors.bgPrimary) < 0.5;
+
+    return `I'd like you to create an iOS app interface using the "${style.name}" design style with SwiftUI.
+
+Reference URL: ${getPreviewUrl()}
+
+## Style Specifications
+
+**Design Philosophy:** ${style.description}
+
+**Best Used For:** ${style.tags.join(', ')}
+
+---
+
+## HIG-Compliant Color System
+
+Create a custom color scheme that adapts to light/dark mode:
+
+\`\`\`swift
+// Colors.swift
+import SwiftUI
+
+extension Color {
+    // MARK: - ${style.name} Theme Colors
+
+    static let themePrimary = ${hexToSwiftUI(style.colors.bgPrimary)}
+    static let themeSecondary = ${hexToSwiftUI(style.colors.bgSecondary)}
+    static let themeTertiary = ${hexToSwiftUI(style.colors.bgTertiary)}
+
+    static let themeTextPrimary = ${hexToSwiftUI(style.colors.textPrimary)}
+    static let themeTextSecondary = ${hexToSwiftUI(style.colors.textSecondary)}
+    static let themeTextTertiary = ${hexToSwiftUI(style.colors.textTertiary)}
+
+    static let themeAccent = ${hexToSwiftUI(style.colors.accent)}
+    static let themeAccentSoft = ${hexToSwiftUI(style.colors.accentSoft)}
+    static let themeBorder = ${hexToSwiftUI(style.colors.border)}
+}
+
+// For production, use Asset Catalog colors that support light/dark mode:
+// Color("ThemePrimary") instead of hardcoded values
+\`\`\`
+
+---
+
+## Typography (Dynamic Type Support)
+
+Use system text styles that scale with user preferences:
+
+\`\`\`swift
+// REQUIRED: Use semantic font styles, NOT fixed sizes
+Text("Page Title")
+    .font(.largeTitle)
+    .fontWeight(.bold)
+
+Text("Section Header")
+    .font(.headline)
+
+Text("Body Content")
+    .font(.body)
+
+Text("Caption/Metadata")
+    .font(.caption)
+    .foregroundColor(.secondary)
+
+// For custom fonts, use relativeTo: for Dynamic Type scaling
+Text("Custom Title")
+    .font(.custom("${style.fonts.display.split(',')[0].replace(/"/g, '')}", size: 28, relativeTo: .title))
+\`\`\`
+
+---
+
+## HIG Compliance Requirements
+
+### Layout & Spacing
+- [ ] Minimum 44x44pt tap targets for all interactive elements
+- [ ] Use system spacing: \`.padding()\` for standard, \`.padding(.horizontal)\` for directional
+- [ ] Respect safe areas - use \`.safeAreaInset()\` for persistent content
+- [ ] Use NavigationStack (not deprecated NavigationView)
+
+### Colors & Dark Mode
+- [ ] ${isDarkStyle ? 'This is a dark theme - ensure it works in both light AND dark system modes' : 'This is a light theme - create dark mode variant for system dark mode'}
+- [ ] Use semantic colors where possible: \`.primary\`, \`.secondary\`, \`Color(.systemBackground)\`
+- [ ] Minimum 4.5:1 contrast ratio for normal text, 3:1 for large text
+- [ ] Never convey information by color alone
+
+### Accessibility
+- [ ] All icon-only buttons need \`.accessibilityLabel("Description")\`
+- [ ] Use \`.accessibilityAddTraits(.isButton)\` for custom tap gestures
+- [ ] Test with VoiceOver enabled
+- [ ] Test at largest Dynamic Type size (Accessibility XXXL)
+
+---
+
+## SwiftUI Component Examples
+
+### Card Component
+\`\`\`swift
+struct ${style.name.replace(/[^a-zA-Z]/g, '')}Card<Content: View>: View {
+    let content: Content
+
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
+    var body: some View {
+        content
+            .padding()
+            .background(Color.themeSecondary)
+            .cornerRadius(${parseInt(style.radius) || 0})
+            ${style.shadow !== 'none' ? '.shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)' : '// No shadow for this style'}
+            .overlay(
+                RoundedRectangle(cornerRadius: ${parseInt(style.radius) || 0})
+                    .stroke(Color.themeBorder, lineWidth: 1)
+            )
+    }
+}
+\`\`\`
+
+### Button Style
+\`\`\`swift
+struct ${style.name.replace(/[^a-zA-Z]/g, '')}ButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.headline)
+            .foregroundColor(${isDarkStyle ? 'Color.themeTextPrimary' : '.white'})
+            .padding(.horizontal, 24)
+            .padding(.vertical, 12)
+            .frame(minWidth: 44, minHeight: 44) // HIG minimum tap target
+            .background(Color.themeAccent)
+            .cornerRadius(${parseInt(style.radius) || 0})
+            .opacity(configuration.isPressed ? 0.8 : 1.0)
+    }
+}
+\`\`\`
+
+### Form Field
+\`\`\`swift
+struct ${style.name.replace(/[^a-zA-Z]/g, '')}TextField: View {
+    let title: String
+    @Binding var text: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title)
+                .font(.subheadline)
+                .foregroundColor(.themeTextSecondary)
+
+            TextField("", text: $text)
+                .font(.body)
+                .padding(12)
+                .background(Color.themeTertiary)
+                .cornerRadius(${parseInt(style.radius) || 0})
+                .overlay(
+                    RoundedRectangle(cornerRadius: ${parseInt(style.radius) || 0})
+                        .stroke(Color.themeBorder, lineWidth: 1)
+                )
+        }
+    }
+}
+\`\`\`
+
+---
+
+## Testing Checklist
+
+Before considering the UI complete:
+
+1. **VoiceOver**: Navigate entire UI with VoiceOver enabled
+2. **Dynamic Type**: Test at Settings → Accessibility → Larger Text → Maximum
+3. **Dark Mode**: Toggle system appearance and verify all elements
+4. **Reduce Motion**: Ensure animations respect \`accessibilityReduceMotion\`
+5. **Device Sizes**: Test on smallest (iPhone SE) and largest (iPhone Pro Max) devices
+
+---
+
+## Skills to Invoke
+
+\`\`\`
+/ios-development
+/ios-ui-review
+\`\`\`
+
+Please apply this design style following Apple's Human Interface Guidelines.`;
+  };
+
   const handleCopyPrompt = async () => {
     try {
-      await navigator.clipboard.writeText(generatePrompt());
+      const prompt = promptType === 'ios' ? generateiOSPrompt() : generatePrompt();
+      await navigator.clipboard.writeText(prompt);
       setCopiedPrompt(true);
       setTimeout(() => setCopiedPrompt(false), 2000);
     } catch (err) {
@@ -106,9 +317,17 @@ Please apply this design style to the interface I'm building. Ensure the design 
 
 Before starting your project, invoke the following skills in Claude Code:
 
+**For Web/Frontend:**
 \`\`\`
-/frontend-design
+/frontend-design-complete
 /color-palette
+/design-styles
+\`\`\`
+
+**For iOS/SwiftUI:**
+\`\`\`
+/ios-development
+/ios-ui-review
 \`\`\`
 
 Then share this document or paste the specifications below.
@@ -366,8 +585,8 @@ ${style.colors.border === 'transparent' ? `
 \`\`\`
 I'd like you to create a frontend interface using the "${style.name}" design style.
 
-Please use the /frontend-design and /color-palette skills to ensure high-quality,
-distinctive design that avoids generic AI aesthetics.
+Please use the /frontend-design-complete and /color-palette skills to ensure high-quality,
+distinctive design that avoids generic AI aesthetics and is fully mobile responsive.
 
 Apply these specifications:
 - Colors: Use the CSS variables defined in this reference
@@ -390,6 +609,41 @@ Mobile responsive requirements:
 
 Design philosophy: ${style.description}
 \`\`\`
+
+---
+
+## iOS App Development
+
+For iOS/SwiftUI implementations, invoke these skills:
+
+\`\`\`
+/ios-development
+/ios-ui-review
+\`\`\`
+
+### SwiftUI Color Extension
+
+\`\`\`swift
+import SwiftUI
+
+extension Color {
+    // ${style.name} Theme
+    static let themePrimary = Color(hex: "${style.colors.bgPrimary}")
+    static let themeSecondary = Color(hex: "${style.colors.bgSecondary}")
+    static let themeAccent = Color(hex: "${style.colors.accent}")
+    static let themeTextPrimary = Color(hex: "${style.colors.textPrimary}")
+    static let themeTextSecondary = Color(hex: "${style.colors.textSecondary}")
+    static let themeBorder = Color(hex: "${style.colors.border}")
+}
+\`\`\`
+
+### HIG Requirements Checklist
+
+- [ ] Minimum 44x44pt tap targets
+- [ ] Dynamic Type support (use \`.font(.headline)\` not fixed sizes)
+- [ ] Semantic colors for dark mode support
+- [ ] Accessibility labels on icon-only buttons
+- [ ] Test with VoiceOver and largest text size
 
 ---
 
@@ -446,9 +700,34 @@ Design philosophy: ${style.description}
         />
       </div>
 
+      {/* Platform Toggle */}
+      <div className="platform-toggle">
+        <button
+          className={`platform-toggle-btn ${promptType === 'web' ? 'active' : ''}`}
+          onClick={() => setPromptType('web')}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+          </svg>
+          Web
+        </button>
+        <button
+          className={`platform-toggle-btn ${promptType === 'ios' ? 'active' : ''}`}
+          onClick={() => setPromptType('ios')}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+            <line x1="12" y1="18" x2="12.01" y2="18" />
+          </svg>
+          iOS
+        </button>
+      </div>
+
       {/* Action Buttons */}
       <div className="style-actions">
-        <button className="style-action-btn" onClick={handleCopyPrompt} title="Copy prompt for Claude">
+        <button className="style-action-btn" onClick={handleCopyPrompt} title={`Copy ${promptType === 'ios' ? 'iOS' : 'Web'} prompt for Claude`}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             {copiedPrompt ? (
               <polyline points="20 6 9 17 4 12" />
@@ -459,7 +738,7 @@ Design philosophy: ${style.description}
               </>
             )}
           </svg>
-          <span>{copiedPrompt ? 'Copied!' : 'Copy Prompt'}</span>
+          <span>{copiedPrompt ? 'Copied!' : `Copy ${promptType === 'ios' ? 'iOS' : 'Web'} Prompt`}</span>
         </button>
         <button className="style-action-btn style-action-btn-primary" onClick={handleDownloadMarkdown} title="Download markdown reference">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
