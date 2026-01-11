@@ -20,6 +20,14 @@ function StyleInfo({ selectedStyle, viewMode }) {
   };
 
   const generatePrompt = () => {
+    // Build special effects list
+    const specialEffects = [];
+    if (style.hasGrid) specialEffects.push('Grid overlay');
+    if (style.hasScanlines) specialEffects.push('Scanlines effect');
+    if (style.hasNoise) specialEffects.push('Noise texture');
+    if (style.hasGrain) specialEffects.push('Film grain');
+    if (style.gradient) specialEffects.push('Gradient background');
+
     return `I'd like you to create a frontend interface using the "${style.name}" design style.
 
 Reference URL: ${getPreviewUrl()}
@@ -50,13 +58,26 @@ Reference URL: ${getPreviewUrl()}
 - Border Radius: ${style.radius}
 - Shadow: ${style.shadow}
 ${style.gradient ? `- Gradient: ${style.gradient}` : ''}
-${style.hasGrid ? '- Grid Effect: Yes' : ''}
-${style.hasScanlines ? '- Scanlines: Yes' : ''}
+${specialEffects.length > 0 ? `- Special Effects: ${specialEffects.join(', ')}` : ''}
+
+**Form Elements:**
+- Apply consistent styling to inputs, selects, and textareas
+- Use the same border-radius, border, and background for all form fields
+- Ensure proper contrast for text and placeholder colors
+- Style radio buttons and checkboxes to match the design aesthetic
+${style.colors.border === 'transparent' ? '- Note: This style uses transparent borders - add visible borders or shadows to form controls' : ''}
+
+**Mobile Responsive Requirements:**
+- Hero section: Center all content on mobile (text-align: center, align-items: center)
+- Convert 2-column grid layouts to single column on mobile
+- Stack form fields vertically on smaller screens
+- Center status/alert cards with consistent alignment
+- Use flex-direction: column for navigation on mobile
 
 **Best Used For:** ${style.tags.join(', ')}
 **Examples:** ${style.examples.join(', ')}
 
-Please apply this design style to the interface I'm building.`;
+Please apply this design style to the interface I'm building. Ensure the design is fully mobile responsive.`;
   };
 
   const handleCopyPrompt = async () => {
@@ -70,6 +91,13 @@ Please apply this design style to the interface I'm building.`;
   };
 
   const generateMarkdown = () => {
+    // Build special effects list
+    const specialEffects = [];
+    if (style.hasGrid) specialEffects.push('Grid overlay');
+    if (style.hasScanlines) specialEffects.push('Scanlines effect');
+    if (style.hasNoise) specialEffects.push('Noise texture');
+    if (style.hasGrain) specialEffects.push('Film grain');
+
     return `# ${style.name} Design Style Reference
 
 > Use this reference with Claude Code to apply the ${style.name} design aesthetic to your frontend projects.
@@ -132,6 +160,10 @@ ${style.description}
   --secondary: ${style.colors.secondary};
   --border: ${style.colors.border};
   --border-strong: ${style.colors.borderStrong};
+  --radius: ${style.radius};
+  --shadow: ${style.shadow};
+  --font-display: ${style.fonts.display};
+  --font-body: ${style.fonts.body};
 }
 \`\`\`
 
@@ -145,16 +177,6 @@ ${style.description}
 | Body | \`${style.fonts.body}\` |
 | Japanese | \`${style.fonts.japanese}\` |
 
-### CSS
-
-\`\`\`css
-:root {
-  --font-display: ${style.fonts.display};
-  --font-body: ${style.fonts.body};
-  --font-japanese: ${style.fonts.japanese};
-}
-\`\`\`
-
 ---
 
 ## Visual Properties
@@ -164,8 +186,170 @@ ${style.description}
 | Border Radius | \`${style.radius}\` |
 | Shadow | \`${style.shadow}\` |
 ${style.gradient ? `| Gradient | \`${style.gradient}\` |` : ''}
-${style.hasGrid ? '| Grid Effect | Yes |' : ''}
-${style.hasScanlines ? '| Scanlines | Yes |' : ''}
+${specialEffects.length > 0 ? specialEffects.map(e => `| ${e} | Yes |`).join('\n') : ''}
+
+---
+
+## Form Elements
+
+Apply consistent styling across all form controls:
+
+\`\`\`css
+/* Base form field styles */
+.input,
+.select,
+.textarea {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* Labels */
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Radio buttons */
+.radio-mark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  position: relative;
+}
+
+.radio input:checked + .radio-mark {
+  border-color: var(--accent);
+}
+
+.radio input:checked + .radio-mark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+\`\`\`
+${style.colors.border === 'transparent' ? `
+> **Note:** This style uses transparent borders. Add visible borders or use shadows/background colors to make form controls visible.
+` : ''}
+
+---
+
+## Mobile Responsive Design
+
+### Key Breakpoints
+
+\`\`\`css
+/* Tablet */
+@media (max-width: 1200px) {
+  /* Stack sidebars below main content */
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  /* Full single-column layout */
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  /* Compact spacing and font sizes */
+}
+\`\`\`
+
+### Mobile Layout Guidelines
+
+\`\`\`css
+/* Hero Section - Center on mobile */
+@media (max-width: 768px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Form Layout - Stack on mobile */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+}
+
+/* Status/Alert Cards - Center content */
+@media (max-width: 768px) {
+  .alert {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+/* Grid Layouts - Single column */
+@media (max-width: 768px) {
+  .pricing-grid,
+  .feature-grid,
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+\`\`\`
 
 ---
 
@@ -191,6 +375,18 @@ Apply these specifications:
 - Border radius: ${style.radius}
 - Shadow style: ${style.shadow === 'none' ? 'No shadows' : 'Custom shadows as specified'}
 ${style.gradient ? `- Use gradient background: ${style.gradient}` : ''}
+${specialEffects.length > 0 ? `- Special effects: ${specialEffects.join(', ')}` : ''}
+
+Form elements requirements:
+- Style inputs, selects, and textareas consistently
+- Ensure proper contrast for labels and placeholder text
+- Style radio buttons and checkboxes to match the aesthetic
+
+Mobile responsive requirements:
+- Center hero content on mobile
+- Stack form fields vertically
+- Use single-column layouts for grids
+- Center status/alert cards
 
 Design philosophy: ${style.description}
 \`\`\`
