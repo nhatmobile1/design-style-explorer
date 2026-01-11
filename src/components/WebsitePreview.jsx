@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { styleData } from '../data/styles';
 
 // Image mappings for different styles
@@ -32,11 +33,11 @@ const styleImages = {
   // Cyberpunk/Neon styles - use night city images
   'cyberpunk': {
     hero: '/pexels-haugenzhays-1798631.jpg', // Dotonbori neon
-    cta: '/pexels-audrey-mari-1016051-3421920.jpg', // Red lanterns
+    cta: '/pexels-evgeny-tchebotarev-1058775-2541310.jpg', // TeamLab floating lanterns
   },
   'neon': {
-    hero: '/pexels-haugenzhays-1798631.jpg',
-    cta: '/pexels-audrey-mari-1016051-3421920.jpg',
+    hero: '/pexels-evgeny-tchebotarev-1058775-2541310.jpg', // TeamLab floating lanterns
+    cta: '/pexels-haugenzhays-1798631.jpg',
   },
   'vaporwave': {
     hero: '/pexels-haugenzhays-1798631.jpg',
@@ -108,12 +109,14 @@ const styleImages = {
 
   // Playful/Kawaii styles
   'playful': {
-    hero: '/pexels-caleb-pineda-865309-35610136.jpg', // Colorful koi fish
-    cta: '/pexels-ryutaro-5220032.jpg', // Pink cherry blossom petals
+    hero: '/pexels-pixabay-255514.jpg', // Wooden toy airplanes
+    cta: '/pexels-cup-of-couple-8014343.jpg', // Rainbow stacker toy
+    testimonials: '/pexels-pixabay-220137.jpg', // Colorful teddy bears
   },
   'kawaii': {
     hero: '/pexels-ryutaro-5220032.jpg', // Pink cherry blossom petals
-    cta: '/pexels-caleb-pineda-865309-35610136.jpg', // Colorful koi fish
+    cta: '/pexels-cup-of-couple-8014343.jpg', // Rainbow stacker toy
+    testimonials: '/pexels-pixabay-220137.jpg', // Colorful teddy bears
   },
 
   // Industrial/Metro styles
@@ -128,9 +131,9 @@ const styleImages = {
 
   // Handcrafted/Artisan styles
   'handcrafted': {
-    hero: '/pexels-eva-bronzini-5765839.jpg', // Traditional shopfront
+    hero: '/pexels-pixabay-461428.jpg', // Matcha tea ceremony
     cta: '/pexels-loifotos-35588678.jpg', // Elegant sashimi bowl
-    testimonials: '/pexels-ryutaro-6249742.jpg',
+    testimonials: '/pexels-eva-bronzini-5765839.jpg',
   },
 
   // Swiss/Academic styles
@@ -164,9 +167,60 @@ function getStyleImages(styleId) {
   return styleImages[styleId] || styleImages['default'];
 }
 
+// Styles that should have parallax scrolling effect
+const parallaxStyles = [
+  'atmospheric',
+  'editorial',
+  'luxury',
+  'elegant',
+  'japanese',
+  'cyberpunk',
+  'neon',
+  'vaporwave',
+  'nature',
+  'organic',
+  'wabi-sabi',
+  'zen',
+  'minimalist',
+  'monochromatic',
+  'soft-pastel',
+  'handcrafted',
+];
+
 function WebsitePreview({ selectedStyle }) {
   const style = styleData[selectedStyle];
   const images = getStyleImages(selectedStyle);
+  const containerRef = useRef(null);
+
+  // Check if this style should have parallax/fade effects
+  const hasParallax = parallaxStyles.includes(selectedStyle);
+
+  // Intersection Observer for fade-in animations
+  useEffect(() => {
+    if (!hasParallax || !containerRef.current) return;
+
+    const observerOptions = {
+      root: containerRef.current,
+      rootMargin: '0px',
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections with fade-in class
+    const fadeElements = containerRef.current.querySelectorAll('.fade-in-section');
+    fadeElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      fadeElements.forEach((el) => observer.unobserve(el));
+    };
+  }, [hasParallax, selectedStyle]);
 
   if (!style) {
     return <div className="website-preview">Select a style to preview</div>;
@@ -198,7 +252,7 @@ function WebsitePreview({ selectedStyle }) {
     : { backgroundColor: 'var(--bg-primary)' };
 
   return (
-    <div className={`website-preview style-${selectedStyle}`} style={cssVars}>
+    <div className={`website-preview style-${selectedStyle}${hasParallax ? ' has-parallax' : ''}`} style={cssVars} ref={containerRef}>
       <div className="website-container" style={backgroundStyle}>
         {/* Style-specific overlays */}
         {style.hasScanlines && <div className="scanlines-overlay" />}
@@ -213,8 +267,8 @@ function WebsitePreview({ selectedStyle }) {
         <nav className="web-nav">
           <div className="web-nav-inner">
             <div className="web-nav-logo">
-              <span className="web-logo-icon">語</span>
-              <span className="web-logo-text">NihongoLab</span>
+              <span className="web-logo-icon">上手</span>
+              <span className="web-logo-text">JouzuLab</span>
             </div>
             <div className="web-nav-links">
               <a href="#" className="web-nav-link active">Home</a>
@@ -305,7 +359,7 @@ function WebsitePreview({ selectedStyle }) {
         </section>
 
         {/* Stats Section */}
-        <section className="web-stats-section">
+        <section className={`web-stats-section${hasParallax ? ' fade-in-section' : ''}`}>
           <div className="web-stats-grid">
             <div className="web-stats-card">
               <div className="web-stats-number">50K+</div>
@@ -354,7 +408,7 @@ function WebsitePreview({ selectedStyle }) {
         </div>
 
         {/* Features Section with Sidebar Layout */}
-        <section className="web-features">
+        <section className={`web-features${hasParallax ? ' fade-in-section' : ''}`}>
           <div className="web-features-grid">
             {/* Sidebar */}
             <aside className="web-sidebar">
@@ -418,7 +472,7 @@ function WebsitePreview({ selectedStyle }) {
         </section>
 
         {/* Pricing Section */}
-        <section className="web-pricing">
+        <section className={`web-pricing${hasParallax ? ' fade-in-section' : ''}`}>
           <h2 className="web-section-title">Simple, transparent pricing</h2>
           <p className="web-section-subtitle">Start free, upgrade when you're ready</p>
 
@@ -494,7 +548,7 @@ function WebsitePreview({ selectedStyle }) {
         </section>
 
         {/* Form Elements Section */}
-        <section className="web-form-section">
+        <section className={`web-form-section${hasParallax ? ' fade-in-section' : ''}`}>
           <h2 className="web-section-title">Contact Us</h2>
           <p className="web-section-subtitle">Have questions? We'd love to hear from you.</p>
 
@@ -614,7 +668,7 @@ function WebsitePreview({ selectedStyle }) {
         </section>
 
         {/* Progress/Loading Section */}
-        <section className="web-progress-section">
+        <section className={`web-progress-section${hasParallax ? ' fade-in-section' : ''}`}>
           <h2 className="web-section-title">Your Progress</h2>
           <div className="web-progress-cards">
             <div className="web-progress-card">
@@ -648,7 +702,7 @@ function WebsitePreview({ selectedStyle }) {
         </section>
 
         {/* CTA Section */}
-        <section className="web-cta" style={images.cta ? { '--cta-image': `url(${images.cta})` } : {}}>
+        <section className={`web-cta${hasParallax ? ' fade-in-section' : ''}`} style={images.cta ? { '--cta-image': `url(${images.cta})` } : {}}>
           {images.cta && <div className="web-cta-bg" />}
           <div className="web-cta-content">
             <h2>Ready to start your journey?</h2>
@@ -662,7 +716,7 @@ function WebsitePreview({ selectedStyle }) {
         </section>
 
         {/* Team Section */}
-        <section className="web-team">
+        <section className={`web-team${hasParallax ? ' fade-in-section' : ''}`}>
           <h2 className="web-section-title">Meet the team</h2>
           <p className="web-section-subtitle">Language experts and engineers building the future of learning</p>
           <div className="web-team-grid">
@@ -702,7 +756,7 @@ function WebsitePreview({ selectedStyle }) {
         </section>
 
         {/* FAQ Section */}
-        <section className="web-faq">
+        <section className={`web-faq${hasParallax ? ' fade-in-section' : ''}`}>
           <h2 className="web-section-title">Frequently asked questions</h2>
           <p className="web-section-subtitle">Everything you need to know to get started</p>
           <div className="web-faq-list">
@@ -736,12 +790,12 @@ function WebsitePreview({ selectedStyle }) {
                 </svg>
               </summary>
               <div className="web-faq-answer">
-                <p>Yes! NihongoLab is available on iOS, Android, and web. Your progress syncs automatically across all devices, so you can learn anywhere.</p>
+                <p>Yes! JouzuLab is available on iOS, Android, and web. Your progress syncs automatically across all devices, so you can learn anywhere.</p>
               </div>
             </details>
             <details className="web-faq-item">
               <summary className="web-faq-question">
-                <span>What makes NihongoLab different from other apps?</span>
+                <span>What makes JouzuLab different from other apps?</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M6 9l6 6 6-6" />
                 </svg>
@@ -754,7 +808,7 @@ function WebsitePreview({ selectedStyle }) {
         </section>
 
         {/* Testimonials */}
-        <section className="web-testimonials" style={images.testimonials ? { '--testimonials-image': `url(${images.testimonials})` } : {}}>
+        <section className={`web-testimonials${hasParallax ? ' fade-in-section' : ''}`} style={images.testimonials ? { '--testimonials-image': `url(${images.testimonials})` } : {}}>
           {images.testimonials && <div className="web-testimonials-bg" />}
           <h2 className="web-section-title">Loved by learners</h2>
           <div className="web-testimonial-grid">
@@ -799,8 +853,8 @@ function WebsitePreview({ selectedStyle }) {
           <div className="web-footer-main">
             <div className="web-footer-brand">
               <div className="web-footer-logo">
-                <span className="web-logo-icon">語</span>
-                <span className="web-logo-text">NihongoLab</span>
+                <span className="web-logo-icon">上手</span>
+                <span className="web-logo-text">JouzuLab</span>
               </div>
               <p>Making Japanese accessible to everyone, everywhere.</p>
               <div className="web-footer-social">
@@ -854,8 +908,8 @@ function WebsitePreview({ selectedStyle }) {
           </div>
 
           <div className="web-footer-bottom">
-            <span>© 2025 NihongoLab. All rights reserved.</span>
-            <span className="web-footer-style-badge">{style.name} style</span>
+            <span>© 2025 JouzuLab. All rights reserved.</span>
+            <span className="web-footer-style-badge">{style.name}</span>
           </div>
         </footer>
       </div>
@@ -881,7 +935,7 @@ function WebsiteDecorations({ styleId }) {
         <div className="web-deco-brutal">
           <div className="web-brutal-block web-brutal-block-1" />
           <div className="web-brutal-block web-brutal-block-2" />
-          <div className="web-brutal-marquee">JAPANESE ★ LEARN ★ NIHONGO ★ 日本語 ★</div>
+          <div className="web-brutal-marquee">JAPANESE ★ LEARN ★ JOUZU ★ 上手 ★</div>
         </div>
       );
 

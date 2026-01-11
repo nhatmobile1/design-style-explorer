@@ -1660,6 +1660,101 @@
   background: linear-gradient(180deg, var(--bg-primary) 0%, transparent 20%, transparent 80%, var(--bg-primary) 100%);
 }
 
+/* Parallax scrolling effect for hero backgrounds */
+.has-parallax .web-hero-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
+.has-parallax .web-cta-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
+.has-parallax .web-testimonials-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* Fade-in on scroll animation */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered fade-in for child elements */
+.has-parallax .fade-in-section .web-feature-card,
+.has-parallax .fade-in-section .web-pricing-card,
+.has-parallax .fade-in-section .web-team-member,
+.has-parallax .fade-in-section .web-testimonial,
+.has-parallax .fade-in-section .web-stats-card,
+.has-parallax .fade-in-section .web-progress-card,
+.has-parallax .fade-in-section .web-faq-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.has-parallax .fade-in-section.fade-in-visible .web-feature-card,
+.has-parallax .fade-in-section.fade-in-visible .web-pricing-card,
+.has-parallax .fade-in-section.fade-in-visible .web-team-member,
+.has-parallax .fade-in-section.fade-in-visible .web-testimonial,
+.has-parallax .fade-in-section.fade-in-visible .web-stats-card,
+.has-parallax .fade-in-section.fade-in-visible .web-progress-card,
+.has-parallax .fade-in-section.fade-in-visible .web-faq-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delays for cards */
+.has-parallax .fade-in-section.fade-in-visible .web-feature-card:nth-child(1),
+.has-parallax .fade-in-section.fade-in-visible .web-pricing-card:nth-child(1),
+.has-parallax .fade-in-section.fade-in-visible .web-team-member:nth-child(1),
+.has-parallax .fade-in-section.fade-in-visible .web-testimonial:nth-child(1),
+.has-parallax .fade-in-section.fade-in-visible .web-stats-card:nth-child(1),
+.has-parallax .fade-in-section.fade-in-visible .web-progress-card:nth-child(1),
+.has-parallax .fade-in-section.fade-in-visible .web-faq-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.has-parallax .fade-in-section.fade-in-visible .web-feature-card:nth-child(2),
+.has-parallax .fade-in-section.fade-in-visible .web-pricing-card:nth-child(2),
+.has-parallax .fade-in-section.fade-in-visible .web-team-member:nth-child(2),
+.has-parallax .fade-in-section.fade-in-visible .web-testimonial:nth-child(2),
+.has-parallax .fade-in-section.fade-in-visible .web-stats-card:nth-child(2),
+.has-parallax .fade-in-section.fade-in-visible .web-progress-card:nth-child(2),
+.has-parallax .fade-in-section.fade-in-visible .web-faq-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.has-parallax .fade-in-section.fade-in-visible .web-feature-card:nth-child(3),
+.has-parallax .fade-in-section.fade-in-visible .web-pricing-card:nth-child(3),
+.has-parallax .fade-in-section.fade-in-visible .web-team-member:nth-child(3),
+.has-parallax .fade-in-section.fade-in-visible .web-testimonial:nth-child(3),
+.has-parallax .fade-in-section.fade-in-visible .web-stats-card:nth-child(3),
+.has-parallax .fade-in-section.fade-in-visible .web-progress-card:nth-child(3),
+.has-parallax .fade-in-section.fade-in-visible .web-faq-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.has-parallax .fade-in-section.fade-in-visible .web-feature-card:nth-child(4),
+.has-parallax .fade-in-section.fade-in-visible .web-pricing-card:nth-child(4),
+.has-parallax .fade-in-section.fade-in-visible .web-team-member:nth-child(4),
+.has-parallax .fade-in-section.fade-in-visible .web-testimonial:nth-child(4),
+.has-parallax .fade-in-section.fade-in-visible .web-stats-card:nth-child(4),
+.has-parallax .fade-in-section.fade-in-visible .web-faq-item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
 .web-badge {
   display: inline-block;
   padding: 6px 12px;
@@ -4664,6 +4759,25 @@
   letter-spacing: 4px;
 }
 
+.style-art-deco .web-footer-social {
+  justify-content: center;
+}
+
+.style-art-deco .web-footer-bottom {
+  justify-content: center;
+  gap: 32px;
+}
+
+.style-art-deco .web-footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.style-art-deco .web-footer-brand p {
+  text-align: center;
+}
+
 /* ========================================
    EDITORIAL - NYT/Bloomberg Businessweek inspired
    Magazine layout, strong typography, asymmetry
@@ -4997,17 +5111,6 @@
   transform: rotate(5deg);
 }
 
-.style-memphis .web-cta {
-  background: var(--accent);
-  border: 4px solid var(--border);
-  transform: rotate(-0.5deg);
-}
-
-.style-memphis .web-cta h2,
-.style-memphis .web-cta p {
-  color: white;
-}
-
 .style-memphis .web-input {
   border-radius: 0;
   border: 3px solid var(--border);
@@ -5017,6 +5120,79 @@
   border-radius: 0;
   border: 3px solid var(--border);
   transform: rotate(2deg);
+}
+
+/* Memphis Form Section - Fix pink on pink contrast */
+.style-memphis .web-form-section {
+  background: var(--bg-primary);
+}
+
+.style-memphis .web-alert {
+  background: var(--bg-primary);
+  border: 3px solid var(--border);
+}
+
+.style-memphis .web-alert-success {
+  background: var(--secondary);
+  color: #FFFFFF;
+}
+
+.style-memphis .web-alert-success .web-alert-title,
+.style-memphis .web-alert-success .web-alert-message {
+  color: #FFFFFF;
+}
+
+.style-memphis .web-alert-warning {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.style-memphis .web-alert-error {
+  background: #1A1A1A;
+  color: #FFFFFF;
+}
+
+.style-memphis .web-alert-error .web-alert-title,
+.style-memphis .web-alert-error .web-alert-message {
+  color: #FFFFFF;
+}
+
+.style-memphis .web-alert-info {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* Memphis CTA Section - Better contrast */
+.style-memphis .web-cta {
+  background: var(--border);
+  border: 4px solid var(--border);
+  transform: rotate(-0.5deg);
+}
+
+.style-memphis .web-cta h2,
+.style-memphis .web-cta p,
+.style-memphis .web-cta-note {
+  color: var(--bg-primary);
+}
+
+.style-memphis .web-cta .web-input {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.style-memphis .web-cta .web-input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Memphis Testimonials - Better contrast */
+.style-memphis .web-testimonial {
+  background: var(--bg-primary);
+}
+
+.style-memphis .web-testimonial p,
+.style-memphis .web-testimonial-name,
+.style-memphis .web-testimonial-title {
+  color: var(--text-primary);
 }
 
 /* ========================================
@@ -5401,6 +5577,24 @@
 
 .style-kawaii .web-footer {
   border-top: 3px dotted var(--accent);
+}
+
+.style-kawaii .web-progress-card {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 4px 0 var(--border);
+  text-align: left;
+}
+
+.style-kawaii .web-progress-bar {
+  border-radius: 100px;
+  background: var(--bg-tertiary);
+}
+
+.style-kawaii .web-progress-fill {
+  border-radius: 100px;
+  background: var(--accent);
 }
 
 /* ========================================
@@ -10225,6 +10419,7 @@
 .web-progress-section {
   padding: 80px 60px;
   background: var(--bg-primary);
+  text-align: center;
 }
 
 .web-progress-cards {
@@ -10232,7 +10427,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 32px auto 0;
+  text-align: left;
 }
 
 .web-progress-card {
@@ -10346,14 +10542,16 @@
 .web-faq {
   padding: 80px 60px;
   background: var(--bg-primary);
+  text-align: center;
 }
 
 .web-faq-list {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 32px auto 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  text-align: left;
 }
 
 .web-faq-item {
