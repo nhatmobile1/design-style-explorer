@@ -51,11 +51,12 @@ const iOSColorOverrides = {
     }
   },
   'glassmorphism': {
-    reason: 'Variable contrast on transparent backgrounds',
+    reason: 'White accent on transparent backgrounds - action banners need dark text',
     overrides: {
       bgSecondary: 'rgba(255, 255, 255, 0.85)',
       textSecondary: 'rgba(255, 255, 255, 0.9)',
-    }
+    },
+    bannerTextColor: '#1a1a2e',
   },
   'soft-pastel': {
     reason: 'Low accent contrast on light background',
@@ -79,10 +80,11 @@ const iOSColorOverrides = {
     }
   },
   'atmospheric': {
-    reason: 'Tertiary text too low contrast',
+    reason: 'White accent needs dark text on action banners',
     overrides: {
       textTertiary: 'rgba(255, 255, 255, 0.6)',
-    }
+    },
+    bannerTextColor: '#1a1a2e',
   },
   'vaporwave': {
     reason: 'Some text colors too low contrast',
@@ -97,6 +99,22 @@ const iOSColorOverrides = {
   'retro-futuristic': {
     reason: 'Pure neon colors can cause visual strain',
     note: 'Consider reducing saturation slightly for extended use',
+  },
+  'minimalist': {
+    reason: 'Black accent needs white text on action banners',
+    bannerTextColor: '#FFFFFF',
+  },
+  'kinetic': {
+    reason: 'White accent needs dark text on action banners',
+    bannerTextColor: '#000000',
+  },
+  'monochromatic': {
+    reason: 'Light lavender accent/secondary need dark text on action banners',
+    bannerTextColor: '#1A1A2E',
+  },
+  'luxury': {
+    reason: 'White secondary color needs dark text on Review banner',
+    secondaryBannerTextColor: '#0A0A0A',
   },
 };
 
@@ -431,6 +449,143 @@ struct ${style.name.replace(/[^a-zA-Z]/g, '')}TextField: View {
 
 ---
 
+## iOS App Layout Pattern
+
+This design style works well with a dashboard-style iOS app layout:
+
+### Recommended Screen Structure
+\`\`\`swift
+struct DashboardView: View {
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 16) {
+                    // Action Banners (Learn/Review cards)
+                    ActionBanner(title: "Learn", value: "0/5", color: .themeAccent)
+                    ActionBanner(title: "Review", subtitle: "Grammar & Vocab", badge: "22", color: .themeSecondary)
+
+                    // Profile Card
+                    ProfileCard(name: "Username", level: 37, xpRemaining: 460)
+
+                    // Stats Row (3 columns)
+                    HStack(spacing: 8) {
+                        StatCard(icon: "checkmark.square", value: "70", label: "Days Studied")
+                        StatCard(icon: "clock", value: "100%", label: "Last Session")
+                        StatCard(icon: "doc.on.doc", value: "156", label: "Items Studied")
+                    }
+
+                    // Streak Calendar Card
+                    StreakCard(currentStreak: 1)
+
+                    // Progress Section
+                    ProgressSection(title: "JLPT Progress", items: progressData)
+                }
+                .padding(.horizontal)
+            }
+            .navigationTitle("Dashboard")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {}) { Image(systemName: "line.3.horizontal") }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {}) { Image(systemName: "bell") }
+                }
+            }
+        }
+    }
+}
+\`\`\`
+
+### Action Banner Component
+\`\`\`swift
+struct ActionBanner: View {
+    let title: String
+    var subtitle: String? = nil
+    var value: String? = nil
+    var badge: String? = nil
+    let color: Color
+    var useDarkText: Bool = false // Set true for light-colored backgrounds
+
+    private var textColor: Color {
+        useDarkText ? Color(hex: "#1A1A2E") : .white
+    }
+
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(textColor)
+                if let subtitle = subtitle {
+                    Text(subtitle)
+                        .font(.subheadline)
+                        .foregroundColor(textColor.opacity(0.75))
+                }
+                if let value = value {
+                    Text(value)
+                        .font(.subheadline)
+                        .foregroundColor(textColor.opacity(0.85))
+                }
+            }
+            Spacer()
+            if let badge = badge {
+                Text(badge)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 4)
+                    .background(useDarkText ? Color.black.opacity(0.15) : Color.white.opacity(0.25))
+                    .cornerRadius(16)
+                    .foregroundColor(textColor)
+            }
+            Image(systemName: "chevron.right")
+                .foregroundColor(textColor.opacity(0.6))
+        }
+        .padding()
+        .background(color)
+        .cornerRadius(12)
+    }
+}
+
+// IMPORTANT: For styles with light accent colors (white, pastels, etc.),
+// set useDarkText: true to ensure text is readable
+// Examples: Glassmorphism, Minimalist, Kinetic, Atmospheric, Monochromatic
+\`\`\`
+
+### Tab Bar Configuration
+\`\`\`swift
+TabView {
+    DashboardView()
+        .tabItem {
+            Label("Dashboard", systemImage: "house.fill")
+        }
+        .badge(22) // Notification badge
+
+    GrammarView()
+        .tabItem {
+            Label("Grammar", systemImage: "rectangle.3.group")
+        }
+
+    DecksView()
+        .tabItem {
+            Label("Decks", systemImage: "square.stack.3d.up")
+        }
+
+    ContentView()
+        .tabItem {
+            Label("Content", systemImage: "book.closed")
+        }
+
+    SearchView()
+        .tabItem {
+            Label("Search", systemImage: "magnifyingglass")
+        }
+}
+.tint(.themeAccent) // Active tab color
+\`\`\`
+
+---
+
 ## Testing Checklist
 
 Before considering the UI complete:
@@ -440,6 +595,7 @@ Before considering the UI complete:
 3. **Dark Mode**: Toggle system appearance and verify all elements
 4. **Reduce Motion**: Ensure animations respect \`accessibilityReduceMotion\`
 5. **Device Sizes**: Test on smallest (iPhone SE) and largest (iPhone Pro Max) devices
+6. **Action Banner Contrast**: Verify text is readable on accent/secondary colored banners
 
 ---
 
@@ -800,6 +956,66 @@ extension Color {
 }
 \`\`\`
 
+### iOS Dashboard Layout Pattern
+
+\`\`\`swift
+// Recommended structure for dashboard-style apps
+struct DashboardView: View {
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 16) {
+                    // Action Banners
+                    ActionBanner(title: "Learn", value: "0/5", color: .themeAccent)
+                    ActionBanner(title: "Review", subtitle: "Grammar & Vocab", badge: "22", color: .themeSecondary)
+
+                    // Profile Card
+                    ProfileCard()
+
+                    // Stats Row
+                    HStack(spacing: 8) {
+                        StatCard(value: "70", label: "Days Studied")
+                        StatCard(value: "100%", label: "Last Session")
+                        StatCard(value: "156", label: "Items Studied")
+                    }
+
+                    // Progress Section
+                    ProgressSection()
+                }
+                .padding(.horizontal)
+            }
+            .navigationTitle("Dashboard")
+        }
+    }
+}
+\`\`\`
+
+### Action Banner Text Contrast
+
+**Important:** For styles with light accent colors, use dark text on action banners:
+
+| Style | Accent Color | Banner Text |
+|-------|-------------|-------------|
+| Minimalist | Black | White |
+| Glassmorphism | White | Dark (#1a1a2e) |
+| Kinetic | White | Black |
+| Atmospheric | White | Dark (#1a1a2e) |
+| Monochromatic | Light Lavender | Dark (#1A1A2E) |
+| Luxury (Review) | White Secondary | Dark (#0A0A0A) |
+
+### Tab Bar with SF Symbols
+
+\`\`\`swift
+TabView {
+    DashboardView().tabItem { Label("Dashboard", systemImage: "house.fill") }.badge(22)
+    GrammarView().tabItem { Label("Grammar", systemImage: "rectangle.3.group") }
+    DecksView().tabItem { Label("Decks", systemImage: "square.stack.3d.up") }
+    ContentView().tabItem { Label("Content", systemImage: "book.closed") }
+    SearchView().tabItem { Label("Search", systemImage: "magnifyingglass") }
+}
+.tint(.themeAccent)
+\`\`\`
+
 ### HIG Requirements Checklist
 
 - [ ] Minimum 44x44pt tap targets
@@ -807,6 +1023,7 @@ extension Color {
 - [ ] Semantic colors for dark mode support
 - [ ] Accessibility labels on icon-only buttons
 - [ ] Test with VoiceOver and largest text size
+- [ ] Verify action banner text contrast
 
 ---
 
