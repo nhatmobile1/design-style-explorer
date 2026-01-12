@@ -5,8 +5,11 @@ import StyleInfo from './components/StyleInfo';
 import SkillsDownload from './components/SkillsDownload';
 import AppPreview from './components/AppPreview';
 import WebsitePreview from './components/WebsitePreview';
+import IntroPage from './components/IntroPage';
 import { styleData } from './data/styles';
 import './App.css';
+
+const INTRO_STORAGE_KEY = 'designStylesExplorer_hideIntro';
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,6 +24,31 @@ function App() {
   const [viewMode, setViewMode] = useState(() => {
     return viewFromUrl === 'website' ? 'website' : 'app';
   });
+
+  // Intro page state - show unless user has dismissed it permanently
+  // Skip intro if URL has specific style/view params (direct link)
+  const hasDirectLink = styleFromUrl || viewFromUrl;
+  const [showIntro, setShowIntro] = useState(() => {
+    if (hasDirectLink) return false;
+    const hidden = localStorage.getItem(INTRO_STORAGE_KEY);
+    return hidden !== 'true';
+  });
+
+  const handleDismissIntro = (dontShowAgain) => {
+    setShowIntro(false);
+    if (dontShowAgain) {
+      localStorage.setItem(INTRO_STORAGE_KEY, 'true');
+    }
+  };
+
+  const handleShowIntro = () => {
+    setShowIntro(true);
+  };
+
+  const handleResetIntro = () => {
+    localStorage.removeItem(INTRO_STORAGE_KEY);
+    setShowIntro(true);
+  };
 
   // Sync URL when style or view changes (only in non-preview mode)
   useEffect(() => {
@@ -62,6 +90,11 @@ function App() {
     );
   }
 
+  // Show intro page
+  if (showIntro) {
+    return <IntroPage onDismiss={handleDismissIntro} />;
+  }
+
   return (
     <div className="app-layout">
       <aside className="sidebar-left">
@@ -97,6 +130,16 @@ function App() {
               Website
             </button>
           </div>
+          <button
+            className="intro-btn"
+            onClick={handleResetIntro}
+            title="Show intro page"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 16v-4M12 8h.01" />
+            </svg>
+          </button>
         </div>
 
         {/* Preview Area */}

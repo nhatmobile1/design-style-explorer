@@ -1,6 +1,6 @@
 # Design Styles Explorer
 
-Interactive web app for exploring and previewing 43+ distinct web design aesthetics.
+Interactive web app for exploring and previewing 42 distinct web design aesthetics.
 
 ## Purpose
 
@@ -15,7 +15,7 @@ Help designers, developers, and AI assistants understand and apply different des
 
 ## Key Features
 
-- 43+ design styles in 13 categories (Minimalist, Retro, Tech, Luxury, Organic, etc.)
+- 42 design styles in 13 categories (Minimalist, Retro, Tech, Luxury, Organic, etc.)
 - Dual preview: iOS mobile app + full website layout
 - Live CSS variables for colors, typography, spacing, shadows
 - Claude Code integration (copy prompts, download markdown)

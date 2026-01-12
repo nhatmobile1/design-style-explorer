@@ -1,4 +1,123 @@
 /* ========================================
+   Intro Page
+   ======================================== */
+.intro-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
+  padding: 24px;
+}
+
+.intro-content {
+  max-width: 480px;
+  text-align: center;
+}
+
+.intro-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.intro-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 16px 0;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.intro-description {
+  font-size: 17px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+}
+
+.intro-features {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.intro-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+}
+
+.intro-feature svg {
+  color: #6366f1;
+}
+
+.intro-feature span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.intro-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.intro-cta:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+.intro-cta svg {
+  transition: transform 0.2s ease;
+}
+
+.intro-cta:hover svg {
+  transform: translateX(4px);
+}
+
+.intro-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  cursor: pointer;
+  color: #888;
+  font-size: 13px;
+}
+
+.intro-toggle input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #6366f1;
+}
+
+.intro-toggle:hover {
+  color: #666;
+}
+
+/* ========================================
    App Layout
    ======================================== */
 .app-layout {
@@ -517,6 +636,8 @@
   padding: 12px 24px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 16px;
 }
 
 .view-toggle {
@@ -557,6 +678,26 @@
 
 .view-toggle-btn.active svg {
   opacity: 1;
+}
+
+.intro-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.intro-btn:hover {
+  background: #2a2a2a;
+  color: #fff;
+  border-color: #3a3a3a;
 }
 
 /* ========================================
