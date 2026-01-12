@@ -7506,6 +7506,150 @@
   box-shadow: inset 2px 2px 4px rgba(163,177,198,0.3), inset -2px -2px 4px rgba(255,255,255,0.8);
 }
 
+/* Stats Section */
+.style-neomorphism .web-stats-section {
+  background: var(--bg-primary);
+}
+
+.style-neomorphism .web-stats-card {
+  background: var(--bg-primary);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 8px 8px 16px rgba(163,177,198,0.4), -8px -8px 16px rgba(255,255,255,0.95);
+}
+
+.style-neomorphism .web-stats-number {
+  color: var(--text-primary);
+}
+
+.style-neomorphism .web-stats-bar {
+  background: var(--bg-primary);
+  box-shadow: inset 3px 3px 6px rgba(163,177,198,0.35), inset -3px -3px 6px rgba(255,255,255,0.9);
+  border-radius: 10px;
+}
+
+.style-neomorphism .web-stats-bar-fill {
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent), white 20%));
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(163,177,198,0.3);
+}
+
+/* Progress Section */
+.style-neomorphism .web-progress-section {
+  background: var(--bg-primary);
+}
+
+.style-neomorphism .web-progress-card {
+  background: var(--bg-primary);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 8px 8px 16px rgba(163,177,198,0.4), -8px -8px 16px rgba(255,255,255,0.95);
+  padding: 24px;
+}
+
+.style-neomorphism .web-progress-bar {
+  background: var(--bg-primary);
+  box-shadow: inset 3px 3px 6px rgba(163,177,198,0.35), inset -3px -3px 6px rgba(255,255,255,0.9);
+  border-radius: 10px;
+}
+
+.style-neomorphism .web-progress-fill {
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent), white 20%));
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(163,177,198,0.3);
+}
+
+/* FAQ Section */
+.style-neomorphism .web-faq {
+  background: var(--bg-primary);
+}
+
+.style-neomorphism .web-faq-item {
+  background: var(--bg-primary);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 6px 6px 12px rgba(163,177,198,0.4), -6px -6px 12px rgba(255,255,255,0.95);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.style-neomorphism .web-faq-question {
+  background: var(--bg-primary);
+  padding: 20px 24px;
+}
+
+.style-neomorphism .web-faq-item[open] .web-faq-question {
+  box-shadow: inset 0 -1px 0 rgba(163,177,198,0.2);
+}
+
+.style-neomorphism .web-faq-answer {
+  background: var(--bg-primary);
+  padding: 0 24px 20px;
+}
+
+/* Team Section */
+.style-neomorphism .web-team {
+  background: var(--bg-primary);
+}
+
+.style-neomorphism .web-team-member {
+  background: var(--bg-primary);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 8px 8px 16px rgba(163,177,198,0.4), -8px -8px 16px rgba(255,255,255,0.95);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.style-neomorphism .web-team-avatar {
+  background: var(--bg-primary);
+  box-shadow: inset 4px 4px 8px rgba(163,177,198,0.35), inset -4px -4px 8px rgba(255,255,255,0.9);
+  border: none;
+}
+
+.style-neomorphism .web-team-role {
+  color: var(--accent);
+}
+
+.style-neomorphism .web-team-bio {
+  color: var(--text-secondary);
+}
+
+/* Neomorphism Pricing */
+.style-neomorphism .web-pricing {
+  background: var(--bg-primary);
+}
+
+.style-neomorphism .web-pricing-card {
+  background: var(--bg-primary);
+  border: none;
+  border-radius: 24px;
+  box-shadow: 8px 8px 16px rgba(163,177,198,0.4), -8px -8px 16px rgba(255,255,255,0.95);
+  padding: 32px;
+}
+
+.style-neomorphism .web-pricing-card.web-pricing-featured {
+  box-shadow: 12px 12px 24px rgba(163,177,198,0.5), -12px -12px 24px rgba(255,255,255,0.95);
+}
+
+.style-neomorphism .web-pricing-header {
+  border-bottom: none;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.style-neomorphism .web-pricing-price {
+  color: var(--accent);
+}
+
+.style-neomorphism .web-pricing-features {
+  background: transparent;
+}
+
+.style-neomorphism .web-pricing-features li::before {
+  color: var(--accent);
+}
+
 /* ========================================
    CLAYMORPHISM - Inflated 3D Clay/Play-Doh
    Puffy shapes, inner highlights, soft depth
@@ -11290,6 +11434,12 @@
 .web-form-section {
   padding: 80px 60px;
   background: var(--bg-secondary);
+  text-align: center;
+}
+
+.web-form-section .web-section-title,
+.web-form-section .web-section-subtitle {
+  text-align: center;
 }
 
 .web-form-container {
@@ -11304,6 +11454,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  text-align: left;
 }
 
 .web-form-row {
