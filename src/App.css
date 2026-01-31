@@ -386,6 +386,30 @@
   margin-bottom: 20px;
 }
 
+/* AI Slop Warning */
+.ai-slop-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.ai-slop-warning svg {
+  flex-shrink: 0;
+  color: #fbbf24;
+  margin-top: 2px;
+}
+
+.ai-slop-warning span {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #d4a520;
+}
+
 /* Preview URL */
 .style-url-section {
   margin-bottom: 16px;

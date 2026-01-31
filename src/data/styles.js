@@ -169,6 +169,7 @@ export const styleData = {
     glassBlur: 'blur(16px)',
     cardStyle: 'glass',
     buttonStyle: 'glass',
+    aiSlopWarning: 'Purple gradient background and 16px radius are overused patterns. Best used when mimicking macOS/iOS aesthetics specifically.',
   },
   'neomorphism': {
     name: 'Neomorphism/Soft UI',
@@ -312,6 +313,7 @@ export const styleData = {
     shadow: '4px 4px 0 rgba(0,0,0,0.2)',
     cardStyle: 'torn',
     buttonStyle: 'stamped',
+    aiSlopWarning: 'Cream background (#F5F0E6) is a common AI-generated pattern. The bold black borders help differentiate this style, but consider pure white or textured paper alternatives.',
   },
   'retro-futuristic': {
     name: 'Retro-Futuristic',
@@ -455,6 +457,7 @@ export const styleData = {
     shadow: '0 4px 20px rgba(139, 115, 85, 0.1)',
     cardStyle: 'organic',
     buttonStyle: 'rounded',
+    aiSlopWarning: 'Uses cream background, warm shadow, and 24px radius - patterns often associated with generic AI design. Appropriate for wellness/organic contexts but may appear generic in other uses.',
   },
   'wabi-sabi': {
     name: 'Wabi-Sabi',
@@ -539,6 +542,7 @@ export const styleData = {
     shadow: '0 4px 20px rgba(232, 164, 184, 0.2)',
     cardStyle: 'soft',
     buttonStyle: 'pill',
+    aiSlopWarning: 'Warm pink shadows and 16px radius create a "cozy webapp" feel often seen in generic AI designs. Appropriate for baby/wellness contexts but can appear generic elsewhere.',
   },
   'kawaii': {
     name: 'Kawaii/Cute',
@@ -906,6 +910,7 @@ export const styleData = {
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
     cardStyle: 'gradient',
     buttonStyle: 'gradient',
+    aiSlopWarning: 'Purple-pink gradients and colored shadows are commonly overused AI patterns. When using this style, ensure intentional application for brand purposes.',
   },
   'dark-mode': {
     name: 'Dark Mode',
@@ -926,8 +931,8 @@ export const styleData = {
       borderStrong: '#52525B',
     },
     fonts: {
-      display: '"Inter", sans-serif',
-      body: '"Inter", sans-serif',
+      display: '"Geist", "Inter", sans-serif',
+      body: '"Geist", "Inter", sans-serif',
       japanese: '"Noto Sans JP", sans-serif',
     },
     radius: '8px',
@@ -1130,6 +1135,7 @@ export const styleData = {
     shadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
     cardStyle: 'friendly',
     buttonStyle: 'rounded',
+    aiSlopWarning: 'This style IS the "Big Tech" aesthetic that many consider generic. The 12px radius and "friendly" feel are intentional but overused industry-wide. Best for brands intentionally mimicking Big Tech.',
   },
   'claymorphism': {
     name: 'Claymorphism',
