@@ -1,4 +1,41 @@
 /* ========================================
+   Accessibility
+   ======================================== */
+
+/* Skip Link - hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #111;
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 10000;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 8px 0;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion - respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
    Intro Page
    ======================================== */
 .intro-page {
@@ -331,7 +368,7 @@
 .style-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
 .tag {
@@ -404,7 +441,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   padding: 8px 12px;
   background: transparent;
   border: none;
@@ -434,7 +471,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 11px;
@@ -470,7 +507,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   padding: 10px 12px;
   background: #2a2a2a;
   border: 1px solid #3a3a3a;
@@ -1120,7 +1157,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .ios-streak-day span {
@@ -1483,7 +1520,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   padding: 10px 4px;
   background: var(--bg-secondary);
   border: none;
@@ -1548,7 +1585,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   padding: 16px 8px;
   background: var(--bg-secondary);
   border: none;
@@ -11242,7 +11279,7 @@
 .web-stats-trend {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 13px;
 }
 
@@ -11466,7 +11503,7 @@
 .web-form-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .web-label {
@@ -12412,7 +12449,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   padding: 10px 12px;
   border: none;
   border-radius: 8px;
@@ -12453,7 +12490,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   width: 100%;
   padding: 8px;
   margin-bottom: 12px;

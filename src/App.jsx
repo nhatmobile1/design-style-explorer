@@ -97,6 +97,7 @@ function App() {
 
   return (
     <div className="app-layout">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <aside className="sidebar-left">
         <StyleSelector
           selectedStyle={selectedStyle}
@@ -104,7 +105,7 @@ function App() {
         />
       </aside>
 
-      <main className="main-content">
+      <main id="main-content" className="main-content">
         {/* View Toggle */}
         <div className="view-toggle-bar">
           <div className="view-toggle">
