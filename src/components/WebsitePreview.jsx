@@ -1081,7 +1081,9 @@ function WebsiteDecorations({ styleId }) {
     case 'gradient':
       return (
         <div className="web-deco-gradient">
-          <div className="web-gradient-mesh" />
+          <div className="web-gradient-orb web-gradient-orb-1" />
+          <div className="web-gradient-orb web-gradient-orb-2" />
+          <div className="web-gradient-orb web-gradient-orb-3" />
         </div>
       );
 
