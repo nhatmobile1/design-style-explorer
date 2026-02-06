@@ -3994,6 +3994,71 @@
   opacity: 0.03;
 }
 
+/* Wabi-Sabi - Kintsugi/brush stroke decorations */
+.web-deco-wabi {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.web-wabi-brushstroke {
+  position: absolute;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.15;
+  border-radius: 0;
+}
+
+.web-wabi-brushstroke-1 {
+  width: 200px;
+  top: 18%;
+  right: 8%;
+  transform: rotate(-2deg);
+}
+
+.web-wabi-brushstroke-2 {
+  width: 140px;
+  bottom: 25%;
+  left: 6%;
+  transform: rotate(1deg);
+  opacity: 0.1;
+}
+
+.web-wabi-crack {
+  position: absolute;
+  top: 40%;
+  right: 12%;
+  width: 60px;
+  height: 120px;
+  background: linear-gradient(180deg, transparent 0%, var(--accent) 30%, var(--accent) 70%, transparent 100%);
+  opacity: 0.08;
+  width: 2px;
+  transform: rotate(15deg);
+}
+
+.web-wabi-crack::before {
+  content: '';
+  position: absolute;
+  top: 35%;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0.6;
+  transform: rotate(-30deg);
+  transform-origin: left center;
+}
+
+.web-wabi-texture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+}
+
 /* Luxury */
 .web-deco-luxury {
   position: absolute;
@@ -4342,6 +4407,57 @@
   border-radius: 50%;
 }
 
+/* Corporate Memphis */
+.web-deco-corp-memphis {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.web-cm-blob {
+  position: absolute;
+  opacity: 0.12;
+}
+
+.web-cm-blob-1 {
+  top: 12%;
+  right: 6%;
+  width: 180px;
+  height: 180px;
+  background: var(--accent);
+  border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%;
+}
+
+.web-cm-blob-2 {
+  bottom: 20%;
+  left: 4%;
+  width: 120px;
+  height: 120px;
+  background: var(--secondary);
+  border-radius: 50%;
+}
+
+.web-cm-blob-3 {
+  top: 50%;
+  right: 15%;
+  width: 80px;
+  height: 80px;
+  background: #43B581;
+  border-radius: 30% 70% 50% 50% / 50% 60% 40% 50%;
+  transform: rotate(15deg);
+}
+
+.web-cm-dots {
+  position: absolute;
+  bottom: 30%;
+  right: 25%;
+  width: 60px;
+  height: 60px;
+  background-image: radial-gradient(var(--accent) 3px, transparent 3px);
+  background-size: 12px 12px;
+  opacity: 0.1;
+}
+
 /* Isometric */
 .web-deco-isometric {
   position: absolute;
@@ -4479,6 +4595,109 @@
   font-size: 40px;
   color: var(--accent);
   opacity: 0.5;
+}
+
+/* Playful Decorations */
+.web-deco-playful {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.web-playful-shape {
+  position: absolute;
+  opacity: 0.15;
+}
+
+.web-playful-shape-1 {
+  top: 12%;
+  right: 8%;
+  width: 100px;
+  height: 100px;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: scale(1.5, 1);
+}
+
+.web-playful-shape-2 {
+  bottom: 20%;
+  left: 5%;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 86px solid var(--secondary);
+  opacity: 0.12;
+}
+
+.web-playful-shape-3 {
+  top: 45%;
+  right: 20%;
+  width: 60px;
+  height: 60px;
+  background: var(--accent);
+  transform: rotate(45deg);
+  opacity: 0.1;
+}
+
+.web-playful-bounce {
+  position: absolute;
+  bottom: 35%;
+  left: 12%;
+  font-size: 32px;
+  color: var(--secondary);
+  opacity: 0.2;
+  animation: playfulBounce 3s ease-in-out infinite;
+}
+
+@keyframes playfulBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Neubrutalism Decorations */
+.web-deco-neubrutalism {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.web-neub-block {
+  position: absolute;
+  border: 3px solid var(--text-primary);
+}
+
+.web-neub-block-1 {
+  top: 15%;
+  right: 6%;
+  width: 120px;
+  height: 80px;
+  background: var(--accent);
+  box-shadow: 4px 4px 0 var(--text-primary);
+  opacity: 0.15;
+}
+
+.web-neub-block-2 {
+  bottom: 22%;
+  left: 8%;
+  width: 80px;
+  height: 80px;
+  background: var(--secondary);
+  border-radius: 50%;
+  box-shadow: 4px 4px 0 var(--text-primary);
+  opacity: 0.12;
+}
+
+.web-neub-shadow {
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  width: 60px;
+  height: 40px;
+  background: transparent;
+  border: 3px solid var(--text-primary);
+  box-shadow: 5px 5px 0 var(--text-primary);
+  opacity: 0.08;
 }
 
 /* Collage Decorations */
@@ -5356,6 +5575,49 @@
   border-radius: 0;
 }
 
+.style-neubrutalism .web-cta {
+  background: var(--text-primary);
+  border: 3px solid var(--border);
+  box-shadow: 8px 8px 0 var(--border);
+}
+
+.style-neubrutalism .web-cta h2 {
+  color: var(--bg-primary);
+  font-weight: 900;
+}
+
+.style-neubrutalism .web-cta .web-btn-primary {
+  background: var(--accent);
+  border: 3px solid var(--border);
+  box-shadow: 4px 4px 0 var(--border);
+}
+
+.style-neubrutalism .web-stat-number {
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.style-neubrutalism .web-pricing-card {
+  border: 3px solid var(--border);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 var(--border);
+}
+
+.style-neubrutalism .web-pricing-featured {
+  border-color: var(--accent);
+  box-shadow: 8px 8px 0 var(--accent);
+}
+
+.style-neubrutalism .web-footer {
+  border-top: 3px solid var(--border);
+}
+
+.style-neubrutalism .web-alert {
+  border: 3px solid var(--border);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--border);
+}
+
 /* ========================================
    GLASSMORPHISM - Linear.app/macOS inspired
    Frosted glass, blur, subtle borders, depth
@@ -5471,6 +5733,43 @@
 .style-glassmorphism .web-footer-style-badge {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 8px;
+}
+
+.style-glassmorphism .web-section-title {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.style-glassmorphism .web-stat-number {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.style-glassmorphism .web-pricing-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+}
+
+.style-glassmorphism .web-pricing-featured {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.style-glassmorphism .web-alert {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-color: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+}
+
+.style-glassmorphism .web-hero-title {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.style-glassmorphism .web-breadcrumbs {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* ========================================
@@ -8093,47 +8392,40 @@
 }
 
 /* ========================================
-   ORGANIC/WABI-SABI - Headspace/Aesop inspired
+   ORGANIC - Headspace/Aesop inspired
    Natural, flowing, earthy
    ======================================== */
-.style-organic .web-nav,
-.style-wabi-sabi .web-nav {
+.style-organic .web-nav {
   background: var(--bg-primary);
   border-bottom: none;
 }
 
-.style-organic .web-btn,
-.style-wabi-sabi .web-btn {
+.style-organic .web-btn {
   border-radius: 100px;
 }
 
-.style-organic .web-btn-primary,
-.style-wabi-sabi .web-btn-primary {
+.style-organic .web-btn-primary {
   background: var(--accent);
   color: white;
 }
 
-.style-organic .web-hero-card,
-.style-wabi-sabi .web-hero-card {
+.style-organic .web-hero-card {
   border-radius: 32px;
   background: var(--bg-secondary);
   border: none;
 }
 
-.style-organic .web-feature-card,
-.style-wabi-sabi .web-feature-card {
+.style-organic .web-feature-card {
   border-radius: 24px;
   background: var(--bg-secondary);
   border: none;
 }
 
-.style-organic .web-feature-icon,
-.style-wabi-sabi .web-feature-icon {
+.style-organic .web-feature-icon {
   border-radius: 50%;
 }
 
-.style-organic .web-testimonial,
-.style-wabi-sabi .web-testimonial {
+.style-organic .web-testimonial {
   border-radius: 24px;
   background: var(--bg-secondary);
   border: none;
@@ -8141,31 +8433,16 @@
 
 .style-organic .web-input,
 .style-organic .web-select,
-.style-organic .web-textarea,
-.style-wabi-sabi .web-input,
-.style-wabi-sabi .web-select,
-.style-wabi-sabi .web-textarea {
+.style-organic .web-textarea {
   border-radius: 100px;
 }
 
-.style-organic .web-textarea,
-.style-wabi-sabi .web-textarea {
+.style-organic .web-textarea {
   border-radius: 20px;
 }
 
-.style-organic .web-sidebar-box,
-.style-wabi-sabi .web-sidebar-box {
+.style-organic .web-sidebar-box {
   border-radius: 20px;
-}
-
-.style-wabi-sabi .web-hero-title {
-  font-family: var(--font-display), serif;
-  font-weight: 400;
-}
-
-.style-wabi-sabi .web-section-title {
-  font-family: var(--font-display), serif;
-  font-weight: 400;
 }
 
 /* ========================================
@@ -8401,6 +8678,54 @@
 
 .style-flat-design .web-footer {
   background: var(--bg-tertiary);
+}
+
+.style-flat-design .web-section-title {
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.style-flat-design .web-feature-card:nth-child(1) {
+  background: var(--accent);
+  color: white;
+}
+
+.style-flat-design .web-feature-card:nth-child(1) h3,
+.style-flat-design .web-feature-card:nth-child(1) p {
+  color: white;
+}
+
+.style-flat-design .web-feature-card:nth-child(1) .web-feature-icon {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.style-flat-design .web-stat-number {
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.style-flat-design .web-sidebar-box {
+  border-radius: 12px;
+  background: var(--bg-tertiary);
+  border: none;
+}
+
+.style-flat-design .web-pricing-card {
+  border-radius: 12px;
+  border: none;
+  background: var(--bg-tertiary);
+  box-shadow: none;
+}
+
+.style-flat-design .web-pricing-featured {
+  background: var(--accent);
+  color: white;
+}
+
+.style-flat-design .web-alert {
+  border-radius: 8px;
+  box-shadow: none;
 }
 
 /* ========================================
@@ -10060,11 +10385,16 @@
 
 .style-corporate .web-btn:hover {
   opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .style-corporate .web-hero {
   position: relative;
   padding: 80px 40px;
+}
+
+.style-corporate .web-hero-subtitle {
+  max-width: 580px;
 }
 
 .style-corporate .web-hero::before {
@@ -10182,6 +10512,66 @@
 .style-corporate .web-cta .web-btn-primary {
   background: #48BB78;
   color: #FFFFFF;
+}
+
+.style-corporate .web-section-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.style-corporate .web-feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  border-radius: 6px 6px 0 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.style-corporate .web-feature-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.style-corporate .web-feature-card:hover::before {
+  opacity: 1;
+}
+
+.style-corporate .web-stat-number {
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+}
+
+.style-corporate .web-sidebar-box {
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.style-corporate .web-pricing-card {
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.style-corporate .web-pricing-featured {
+  border-color: var(--accent);
+  border-width: 2px;
+  box-shadow: 0 4px 16px rgba(43, 108, 176, 0.12);
+}
+
+.style-corporate .web-footer {
+  background: var(--text-primary);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.style-corporate .web-alert {
+  border-radius: 4px;
 }
 
 .style-corporate .web-footer {
@@ -10348,6 +10738,58 @@
   border: none;
 }
 
+.style-corporate-memphis .web-section-title {
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.style-corporate-memphis .web-feature-card:nth-child(1) .web-feature-icon {
+  background: var(--accent);
+}
+
+.style-corporate-memphis .web-feature-card:nth-child(2) .web-feature-icon {
+  background: var(--secondary);
+}
+
+.style-corporate-memphis .web-feature-card:nth-child(3) .web-feature-icon {
+  background: #43B581;
+}
+
+.style-corporate-memphis .web-stat-number {
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.style-corporate-memphis .web-sidebar-box {
+  border-radius: 16px;
+  border: none;
+  background: var(--bg-tertiary);
+}
+
+.style-corporate-memphis .web-pricing-card {
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.style-corporate-memphis .web-pricing-featured {
+  box-shadow: 0 8px 32px rgba(88, 101, 242, 0.15);
+  border: 2px solid var(--accent);
+}
+
+.style-corporate-memphis .web-footer {
+  background: #1A1A2E;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.style-corporate-memphis .web-alert {
+  border-radius: 12px;
+}
+
+.style-corporate-memphis .web-btn-primary:hover {
+  background: var(--secondary);
+}
+
 /* ========================================
    MONOCHROMATIC - Single color depth
    Spotify duotone inspired
@@ -10497,28 +10939,42 @@
    ======================================== */
 .style-grid-modular .web-nav {
   background: var(--bg-primary);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--text-primary);
 }
 
 .style-grid-modular .web-logo-text {
   font-weight: 700;
-  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.style-grid-modular .web-nav-links a {
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
 }
 
 .style-grid-modular .web-btn {
-  border-radius: 24px;
+  border-radius: 0;
   font-weight: 600;
-  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  border: 2px solid var(--text-primary);
+  transition: all 0.15s ease;
 }
 
 .style-grid-modular .web-btn-primary {
   background: var(--accent);
   color: white;
-  border: none;
+  border-color: var(--accent);
 }
 
 .style-grid-modular .web-btn:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background: var(--text-primary);
+  color: var(--bg-primary);
 }
 
 .style-grid-modular .web-hero {
@@ -10538,92 +10994,161 @@
 }
 
 .style-grid-modular .web-hero-title {
-  font-weight: 700;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 0.95;
 }
 
 .style-grid-modular .web-badge {
-  background: var(--accent);
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px;
 }
 
 .style-grid-modular .web-hero-card {
-  border-radius: 16px;
+  border-radius: 0;
   background: var(--bg-secondary);
-  border: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 2px solid var(--border);
 }
 
 .style-grid-modular .web-feature-card {
-  border-radius: 16px;
+  border-radius: 0;
   background: var(--bg-secondary);
-  border: none;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-  transition: all 0.2s ease;
-  overflow: hidden;
+  border: 2px solid var(--border);
+  transition: border-color 0.15s ease;
 }
 
 .style-grid-modular .web-feature-card:hover {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.style-grid-modular .web-feature-card:nth-child(1) {
+  border-top: 4px solid var(--accent);
+}
+
+.style-grid-modular .web-feature-card:nth-child(2) {
+  border-top: 4px solid var(--secondary);
+}
+
+.style-grid-modular .web-feature-card:nth-child(3) {
+  border-top: 4px solid var(--text-primary);
 }
 
 .style-grid-modular .web-feature-icon {
-  border-radius: 12px;
-  background: var(--accent-soft);
-  color: var(--accent);
+  border-radius: 0;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.style-grid-modular .web-feature-card h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .style-grid-modular .web-testimonial {
-  border-radius: 16px;
+  border-radius: 0;
   background: var(--bg-secondary);
-  border: none;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  border: 2px solid var(--border);
+  border-left: 4px solid var(--accent);
 }
 
 .style-grid-modular .web-testimonial-avatar {
-  border-radius: 50%;
+  border-radius: 0;
 }
 
 .style-grid-modular .web-cta {
-  background: #1A1A1A;
-  border-radius: 24px;
-  margin: 40px 20px;
+  background: var(--text-primary);
+  border-radius: 0;
 }
 
 .style-grid-modular .web-cta h2 {
   color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .style-grid-modular .web-cta p,
 .style-grid-modular .web-cta-note {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.style-grid-modular .web-section-title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  border-bottom: 2px solid var(--text-primary);
+  padding-bottom: 8px;
+  display: inline-block;
 }
 
 .style-grid-modular .web-input,
 .style-grid-modular .web-select,
 .style-grid-modular .web-textarea {
-  border-radius: 8px;
-  border: 1px solid var(--border-strong);
+  border-radius: 0;
+  border: 2px solid var(--border-strong);
   background: var(--bg-secondary);
-  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.style-grid-modular .web-input:focus,
+.style-grid-modular .web-select:focus,
+.style-grid-modular .web-textarea:focus {
+  border-color: var(--accent);
 }
 
 .style-grid-modular .web-cta .web-input {
-  border-radius: 24px;
+  border-radius: 0;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   color: #FFFFFF;
 }
 
 .style-grid-modular .web-cta .web-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .style-grid-modular .web-cta .web-btn-primary {
-  background: #FF4081;
+  background: var(--accent);
+  border-color: var(--accent);
   color: #FFFFFF;
+}
+
+.style-grid-modular .web-sidebar-box {
+  border-radius: 0;
+  border: 2px solid var(--border);
+}
+
+.style-grid-modular .web-pricing-card {
+  border-radius: 0;
+  border: 2px solid var(--border);
+}
+
+.style-grid-modular .web-pricing-featured {
+  border-color: var(--accent);
+  border-width: 3px;
+}
+
+.style-grid-modular .web-footer {
+  border-top: 2px solid var(--text-primary);
+}
+
+.style-grid-modular .web-stat-number {
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.style-grid-modular .web-alert {
+  border-radius: 0;
+  border-width: 2px;
 }
 
 /* ========================================
@@ -11509,6 +12034,62 @@
   border-top: 1px solid var(--border);
 }
 
+.style-data-viz .web-section-title {
+  font-family: var(--font-display), "Georgia", serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  position: relative;
+  padding-left: 16px;
+}
+
+.style-data-viz .web-section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.style-data-viz .web-stat-number {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  letter-spacing: -1px;
+}
+
+.style-data-viz .web-sidebar-box {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+}
+
+.style-data-viz .web-pricing-card {
+  border-radius: 0;
+  border: 1px solid var(--border);
+}
+
+.style-data-viz .web-pricing-featured {
+  border-color: var(--accent);
+  border-top: 3px solid var(--accent);
+}
+
+.style-data-viz .web-alert {
+  border-radius: 0;
+  border-left-width: 3px;
+}
+
+.style-data-viz .web-badge {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+
 /* ========================================
    ISOMETRIC - Pitch/Loom inspired
    3D angles, depth, illustrations
@@ -12032,6 +12613,46 @@
   opacity: 0.9;
 }
 
+.style-focus-mode .web-section-title {
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+.style-focus-mode .web-stat-number {
+  font-weight: 400;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.style-focus-mode .web-sidebar-box {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.style-focus-mode .web-pricing-card {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.style-focus-mode .web-pricing-featured {
+  border-color: var(--accent);
+  background: rgba(123, 169, 141, 0.05);
+}
+
+.style-focus-mode .web-alert {
+  border-radius: 8px;
+  opacity: 0.85;
+}
+
+.style-focus-mode .web-breadcrumbs {
+  opacity: 0.5;
+}
+
 /* ========================================
    METRO - Windows/Microsoft inspired
    Tiles, flat, bold typography
@@ -12245,8 +12866,16 @@
    ======================================== */
 
 /* --- Organic Enhanced --- */
+/* Biomorphic shapes, irregular radii, nature-inspired */
+
 .style-organic .web-nav {
   border-bottom: 1px solid rgba(107, 142, 78, 0.15);
+}
+
+.style-organic .web-logo-text {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
 .style-organic .web-btn {
@@ -12257,40 +12886,91 @@
   background: var(--accent);
   color: #FFFFFF;
   border: none;
-  box-shadow: 0 4px 12px rgba(107, 142, 78, 0.2);
+}
+
+.style-organic .web-hero-title {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.style-organic .web-hero-subtitle {
+  font-family: var(--font-body), sans-serif;
+  line-height: 1.7;
 }
 
 .style-organic .web-feature-card {
-  border-radius: 20px;
+  border-radius: 18px 24px 16px 22px;
   border: 1px solid rgba(107, 142, 78, 0.1);
+  background: linear-gradient(135deg, rgba(107, 142, 78, 0.02), rgba(107, 142, 78, 0.06));
+}
+
+.style-organic .web-feature-card:nth-child(2) {
+  border-radius: 22px 16px 24px 18px;
+}
+
+.style-organic .web-feature-card:nth-child(3) {
+  border-radius: 16px 22px 18px 24px;
 }
 
 .style-organic .web-feature-icon {
-  background: rgba(107, 142, 78, 0.1);
-  border-radius: 50%;
+  background: rgba(107, 142, 78, 0.12);
+  border-radius: 42% 58% 55% 45% / 48% 52% 48% 52%;
   width: 48px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--accent);
+}
+
+.style-organic .web-feature-card h3 {
+  font-family: var(--font-display), serif;
 }
 
 .style-organic .web-hero-card {
+  border-radius: 22px 18px 24px 16px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(107, 142, 78, 0.12);
+}
+
+.style-organic .web-badge {
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(107, 142, 78, 0.15);
+  background: rgba(107, 142, 78, 0.08);
+  color: var(--accent);
+  border: none;
 }
 
 .style-organic .web-testimonial {
-  border-radius: 20px;
+  border-radius: 24px 18px 22px 16px;
   background: #FFFFFF;
-  border: 1px solid rgba(107, 142, 78, 0.1);
+  border: 1px solid rgba(107, 142, 78, 0.08);
+}
+
+.style-organic .web-testimonial:nth-child(even) {
+  border-radius: 16px 24px 18px 22px;
+}
+
+.style-organic .web-section-title {
+  font-family: var(--font-display), serif;
+  font-weight: 500;
 }
 
 .style-organic .web-sidebar-box {
-  background: rgba(107, 142, 78, 0.06);
-  border-radius: 16px;
-  border: 1px solid rgba(107, 142, 78, 0.1);
+  background: rgba(107, 142, 78, 0.04);
+  border-radius: 20px 16px 22px 18px;
+  border: 1px solid rgba(107, 142, 78, 0.08);
+}
+
+.style-organic .web-cta {
+  background: #3D5A20;
+  border-radius: 24px 18px 22px 16px;
+  margin: 40px 20px;
+}
+
+.style-organic .web-cta h2 {
+  font-family: var(--font-display), serif;
+  color: #F5F1E8;
 }
 
 .style-organic .web-input,
@@ -12300,44 +12980,191 @@
   border: 1px solid var(--border);
 }
 
+.style-organic .web-pricing-card {
+  border-radius: 20px 16px 24px 18px;
+  border: 1px solid rgba(107, 142, 78, 0.1);
+}
+
+.style-organic .web-pricing-featured {
+  border-color: var(--accent);
+}
+
+.style-organic .web-stat-number {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  color: var(--accent);
+}
+
 .style-organic .web-footer {
   background: #EDE8DB;
   border-top: 1px solid rgba(107, 142, 78, 0.15);
 }
 
 /* --- Wabi-Sabi Enhanced --- */
+/* Embracing imperfection, asymmetry, and the beauty of transience */
+
+.style-wabi-sabi .web-nav {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+}
+
+.style-wabi-sabi .web-logo-text {
+  font-family: var(--font-display), serif;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+
+.style-wabi-sabi .web-nav-links a {
+  font-family: var(--font-body), serif;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  opacity: 0.7;
+}
+
+.style-wabi-sabi .web-nav-links a:hover {
+  opacity: 1;
+}
+
+.style-wabi-sabi .web-btn {
+  border-radius: 2px;
+  font-family: var(--font-body), serif;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+}
+
+.style-wabi-sabi .web-btn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.style-wabi-sabi .web-btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.style-wabi-sabi .web-hero-title {
+  font-family: var(--font-display), serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.style-wabi-sabi .web-hero-subtitle {
+  font-family: var(--font-body), serif;
+  font-style: italic;
+  opacity: 0.7;
+  line-height: 1.8;
+}
+
+.style-wabi-sabi .web-badge {
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  border-radius: 0;
+  font-family: var(--font-body), serif;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+}
+
 .style-wabi-sabi .web-hero-card {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-bottom: 2px solid var(--border);
+  box-shadow: none;
+}
+
+.style-wabi-sabi .web-section-title {
+  font-family: var(--font-display), serif;
+  font-weight: 300;
+  letter-spacing: 0.04em;
 }
 
 .style-wabi-sabi .web-feature-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
+  background: transparent;
+  border: none;
+  border-left: 2px solid var(--accent);
+  border-radius: 0;
+  padding-left: 20px;
+}
+
+.style-wabi-sabi .web-feature-card:nth-child(2) {
+  border-left-width: 1px;
+  border-left-color: var(--border);
+}
+
+.style-wabi-sabi .web-feature-card:nth-child(3) {
+  border-left-width: 3px;
 }
 
 .style-wabi-sabi .web-feature-icon {
   color: var(--accent);
+  opacity: 0.5;
+  background: transparent;
+  border: none;
+}
+
+.style-wabi-sabi .web-feature-card h3 {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+}
+
+.style-wabi-sabi .web-feature-card p {
+  font-family: var(--font-body), serif;
+  line-height: 1.8;
   opacity: 0.7;
 }
 
 .style-wabi-sabi .web-testimonial {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  position: relative;
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  padding-top: 24px;
+}
+
+.style-wabi-sabi .web-testimonial p {
+  font-family: var(--font-body), serif;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.style-wabi-sabi .web-testimonial-author {
+  opacity: 0.5;
+  font-size: 12px;
 }
 
 .style-wabi-sabi .web-pricing-card {
   border: 1px solid var(--border);
-  border-radius: 2px;
+  border-radius: 0;
+  background: transparent;
 }
 
 .style-wabi-sabi .web-pricing-featured {
   border-color: var(--accent);
+  border-width: 1px 1px 1px 3px;
+}
+
+.style-wabi-sabi .web-cta {
+  background: #3A3A38;
+  border-radius: 0;
+}
+
+.style-wabi-sabi .web-cta h2 {
+  font-family: var(--font-display), serif;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+.style-wabi-sabi .web-input,
+.style-wabi-sabi .web-select,
+.style-wabi-sabi .web-textarea {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  font-family: var(--font-body), serif;
+  background: var(--bg-primary);
 }
 
 .style-wabi-sabi .web-footer {
@@ -12346,24 +13173,20 @@
 }
 
 .style-wabi-sabi .web-sidebar-box {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-}
-
-.style-wabi-sabi .web-badge {
-  border: 1px solid var(--accent);
   background: transparent;
-  color: var(--accent);
-  border-radius: 2px;
+  border: 1px solid var(--border);
+  border-radius: 0;
 }
 
 .style-wabi-sabi .web-alert {
-  border-radius: 2px;
+  border-radius: 0;
+  background: transparent;
+  border-color: var(--border);
 }
 
-.style-wabi-sabi .web-hero-title {
-  letter-spacing: 0.02em;
+.style-wabi-sabi .web-stat-number {
+  font-family: var(--font-display), serif;
+  font-weight: 300;
 }
 
 /* --- Dark Mode Enhanced --- */

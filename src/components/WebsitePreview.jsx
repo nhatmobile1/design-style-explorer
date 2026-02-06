@@ -926,12 +926,20 @@ function WebsiteDecorations({ styleId }) {
       );
 
     case 'brutalist':
-    case 'neubrutalism':
       return (
         <div className="web-deco-brutal">
           <div className="web-brutal-block web-brutal-block-1" />
           <div className="web-brutal-block web-brutal-block-2" />
           <div className="web-brutal-marquee">JAPANESE ★ LEARN ★ JOUZU ★ 上手 ★</div>
+        </div>
+      );
+
+    case 'neubrutalism':
+      return (
+        <div className="web-deco-neubrutalism">
+          <div className="web-neub-block web-neub-block-1" />
+          <div className="web-neub-block web-neub-block-2" />
+          <div className="web-neub-shadow" />
         </div>
       );
 
@@ -1039,12 +1047,21 @@ function WebsiteDecorations({ styleId }) {
       );
 
     case 'organic':
-    case 'wabi-sabi':
       return (
         <div className="web-deco-organic">
           <div className="web-organic-blob web-organic-blob-1" />
           <div className="web-organic-blob web-organic-blob-2" />
           <div className="web-organic-texture" />
+        </div>
+      );
+
+    case 'wabi-sabi':
+      return (
+        <div className="web-deco-wabi">
+          <div className="web-wabi-brushstroke web-wabi-brushstroke-1" />
+          <div className="web-wabi-brushstroke web-wabi-brushstroke-2" />
+          <div className="web-wabi-crack" />
+          <div className="web-wabi-texture" />
         </div>
       );
 
@@ -1110,11 +1127,20 @@ function WebsiteDecorations({ styleId }) {
       );
 
     case 'corporate':
-    case 'corporate-memphis':
       return (
         <div className="web-deco-corporate">
           <div className="web-corporate-shape web-corporate-shape-1" />
           <div className="web-corporate-shape web-corporate-shape-2" />
+        </div>
+      );
+
+    case 'corporate-memphis':
+      return (
+        <div className="web-deco-corp-memphis">
+          <div className="web-cm-blob web-cm-blob-1" />
+          <div className="web-cm-blob web-cm-blob-2" />
+          <div className="web-cm-blob web-cm-blob-3" />
+          <div className="web-cm-dots" />
         </div>
       );
 
@@ -1144,12 +1170,21 @@ function WebsiteDecorations({ styleId }) {
       );
 
     case 'soft-pastel':
-    case 'playful':
       return (
         <div className="web-deco-pastel">
           <div className="web-pastel-blob web-pastel-blob-1" />
           <div className="web-pastel-blob web-pastel-blob-2" />
           <div className="web-pastel-star">✦</div>
+        </div>
+      );
+
+    case 'playful':
+      return (
+        <div className="web-deco-playful">
+          <div className="web-playful-shape web-playful-shape-1" />
+          <div className="web-playful-shape web-playful-shape-2" />
+          <div className="web-playful-shape web-playful-shape-3" />
+          <div className="web-playful-bounce">●</div>
         </div>
       );
 
