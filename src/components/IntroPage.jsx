@@ -10,7 +10,7 @@ function IntroPage({ onDismiss }) {
   return (
     <div className="intro-page">
       <div className="intro-content">
-        <div className="intro-badge">42 Design Styles</div>
+        <div className="intro-badge">43 Design Styles</div>
         <h1 className="intro-title">Design Styles Explorer</h1>
         <p className="intro-description">
           Explore and preview distinct web design aesthetics. See how each style looks

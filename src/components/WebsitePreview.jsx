@@ -1155,6 +1155,124 @@ function WebsiteDecorations({ styleId }) {
         </div>
       );
 
+    case 'collage':
+      return (
+        <div className="web-deco-collage">
+          <div className="web-collage-tape web-collage-tape-1" />
+          <div className="web-collage-tape web-collage-tape-2" />
+          <div className="web-collage-torn web-collage-torn-1" />
+          <div className="web-collage-stamp">AIR MAIL</div>
+        </div>
+      );
+
+    case 'handcrafted':
+      return (
+        <div className="web-deco-handcrafted">
+          <div className="web-handcrafted-stroke web-handcrafted-stroke-1" />
+          <div className="web-handcrafted-stroke web-handcrafted-stroke-2" />
+          <div className="web-handcrafted-stamp">✦ HANDMADE ✦</div>
+        </div>
+      );
+
+    case 'skeuomorphic':
+      return (
+        <div className="web-deco-skeuo">
+          <div className="web-skeuo-leather" />
+          <div className="web-skeuo-stitch" />
+        </div>
+      );
+
+    case 'monochromatic':
+      return (
+        <div className="web-deco-mono">
+          <div className="web-mono-halftone" />
+          <div className="web-mono-gradient" />
+        </div>
+      );
+
+    case 'grid-modular':
+      return (
+        <div className="web-deco-grid">
+          <div className="web-grid-lines" />
+          <div className="web-grid-block web-grid-block-1" />
+          <div className="web-grid-block web-grid-block-2" />
+        </div>
+      );
+
+    case 'academic':
+      return (
+        <div className="web-deco-academic">
+          <div className="web-academic-rule" />
+          <div className="web-academic-margin" />
+          <div className="web-academic-footnote">†</div>
+        </div>
+      );
+
+    case 'outlined':
+      return (
+        <div className="web-deco-outlined">
+          <div className="web-outlined-circle" />
+          <div className="web-outlined-square" />
+          <div className="web-outlined-triangle" />
+        </div>
+      );
+
+    case 'kinetic':
+      return (
+        <div className="web-deco-kinetic">
+          <div className="web-kinetic-line web-kinetic-line-1" />
+          <div className="web-kinetic-line web-kinetic-line-2" />
+          <div className="web-kinetic-line web-kinetic-line-3" />
+          <div className="web-kinetic-arrow" />
+        </div>
+      );
+
+    case 'atmospheric':
+      return (
+        <div className="web-deco-atmospheric">
+          <div className="web-atmo-fog web-atmo-fog-1" />
+          <div className="web-atmo-fog web-atmo-fog-2" />
+          <div className="web-atmo-vignette" />
+        </div>
+      );
+
+    case 'data-viz':
+      return (
+        <div className="web-deco-dataviz">
+          <svg className="web-dataviz-chart" viewBox="0 0 200 100" fill="none">
+            <polyline points="0,80 30,60 60,70 90,30 120,45 150,20 180,35 200,10" stroke="var(--accent)" strokeWidth="2" opacity="0.3" />
+            <polyline points="0,90 30,75 60,85 90,50 120,60 150,40 180,55 200,30" stroke="var(--secondary)" strokeWidth="1.5" opacity="0.2" />
+          </svg>
+          <div className="web-dataviz-dots" />
+        </div>
+      );
+
+    case 'focus-mode':
+      return (
+        <div className="web-deco-focus">
+          <div className="web-focus-vignette" />
+          <div className="web-focus-spotlight" />
+        </div>
+      );
+
+    case 'flat-design':
+      return (
+        <div className="web-deco-flat">
+          <div className="web-flat-block web-flat-block-1" />
+          <div className="web-flat-block web-flat-block-2" />
+          <div className="web-flat-block web-flat-block-3" />
+        </div>
+      );
+
+    case 'metro':
+      return (
+        <div className="web-deco-metro">
+          <div className="web-metro-tile web-metro-tile-1" />
+          <div className="web-metro-tile web-metro-tile-2" />
+          <div className="web-metro-tile web-metro-tile-3" />
+        </div>
+      );
+
     default:
       return null;
   }

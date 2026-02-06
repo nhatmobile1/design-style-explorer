@@ -70,6 +70,47 @@ function AppPreview({ selectedStyle }) {
               <div className="ios-gradient-mesh" />
             </div>
           )}
+          {selectedStyle === 'terminal' && (
+            <div className="ios-deco-terminal">
+              <div className="ios-terminal-scanlines" />
+            </div>
+          )}
+          {selectedStyle === 'art-deco' && (
+            <div className="ios-deco-artdeco">
+              <div className="ios-artdeco-border" />
+            </div>
+          )}
+          {selectedStyle === 'memphis' && (
+            <div className="ios-deco-memphis">
+              <div className="ios-memphis-zigzag" />
+              <div className="ios-memphis-circle" />
+              <div className="ios-memphis-dots" />
+            </div>
+          )}
+          {selectedStyle === 'neubrutalism' && (
+            <div className="ios-deco-neubrutalism">
+              <div className="ios-neubrutalism-block" />
+            </div>
+          )}
+          {selectedStyle === 'maximalist' && (
+            <div className="ios-deco-maximalist">
+              <div className="ios-max-splash ios-max-splash-1" />
+              <div className="ios-max-splash ios-max-splash-2" />
+            </div>
+          )}
+          {selectedStyle === 'kawaii' && (
+            <div className="ios-deco-kawaii">
+              <div className="ios-kawaii-cloud" />
+              <div className="ios-kawaii-star">★</div>
+              <div className="ios-kawaii-heart">♥</div>
+            </div>
+          )}
+          {selectedStyle === 'bauhaus' && (
+            <div className="ios-deco-bauhaus">
+              <div className="ios-bauhaus-circle" />
+              <div className="ios-bauhaus-triangle" />
+            </div>
+          )}
 
           {/* iOS Status Bar */}
           <div className="ios-status-bar">

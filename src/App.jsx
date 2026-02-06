@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import StyleSelector from './components/StyleSelector';
 import StyleInfo from './components/StyleInfo';
@@ -13,17 +13,33 @@ const INTRO_STORAGE_KEY = 'designStylesExplorer_hideIntro';
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const styleFromUrl = searchParams.get('style');
-  const viewFromUrl = searchParams.get('view');
   const previewOnly = searchParams.get('preview') === 'true';
 
-  // Initialize from URL or defaults
-  const [selectedStyle, setSelectedStyle] = useState(() => {
-    return styleFromUrl && styleData[styleFromUrl] ? styleFromUrl : 'minimalist';
-  });
-  const [viewMode, setViewMode] = useState(() => {
-    return viewFromUrl === 'website' ? 'website' : 'app';
-  });
+  // Derive style and view from URL (single source of truth)
+  const styleFromUrl = searchParams.get('style');
+  const viewFromUrl = searchParams.get('view');
+  const selectedStyle = styleFromUrl && styleData[styleFromUrl] ? styleFromUrl : 'minimalist';
+  const viewMode = viewFromUrl === 'website' ? 'website' : 'app';
+
+  // Update URL when user selects a style
+  const setSelectedStyle = useCallback((newStyle) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set('style', newStyle);
+      if (!next.has('view')) next.set('view', 'app');
+      return next;
+    }, { replace: true });
+  }, [setSearchParams]);
+
+  // Update URL when user toggles view mode
+  const setViewMode = useCallback((newView) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set('view', newView);
+      if (!next.has('style')) next.set('style', 'minimalist');
+      return next;
+    }, { replace: true });
+  }, [setSearchParams]);
 
   // Intro page state - show unless user has dismissed it permanently
   // Skip intro if URL has specific style/view params (direct link)
@@ -41,34 +57,10 @@ function App() {
     }
   };
 
-  const handleShowIntro = () => {
-    setShowIntro(true);
-  };
-
   const handleResetIntro = () => {
     localStorage.removeItem(INTRO_STORAGE_KEY);
     setShowIntro(true);
   };
-
-  // Sync URL when style or view changes (only in non-preview mode)
-  useEffect(() => {
-    if (!previewOnly) {
-      const newParams = new URLSearchParams();
-      newParams.set('style', selectedStyle);
-      newParams.set('view', viewMode);
-      setSearchParams(newParams, { replace: true });
-    }
-  }, [selectedStyle, viewMode, setSearchParams, previewOnly]);
-
-  // Handle URL changes (browser back/forward)
-  useEffect(() => {
-    if (styleFromUrl && styleData[styleFromUrl] && styleFromUrl !== selectedStyle) {
-      setSelectedStyle(styleFromUrl);
-    }
-    if (viewFromUrl && viewFromUrl !== viewMode) {
-      setViewMode(viewFromUrl === 'website' ? 'website' : 'app');
-    }
-  }, [styleFromUrl, viewFromUrl]);
 
   // Preview-only mode: show just the preview without sidebars
   if (previewOnly) {
