@@ -13176,7 +13176,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 48px auto 0;
   width: 100%;
 }
 
